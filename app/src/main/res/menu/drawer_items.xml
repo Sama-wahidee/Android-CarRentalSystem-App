@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group1">
+        <item
+            android:icon="@drawable/setting"
+            android:id="@+id/navSetting"
+            android:title="@string/account_setting"/>
+    </group>
+<group android:id="@+id/group2">
+    <item
+        android:icon="@drawable/transport"
+        android:id="@+id/navadd"
+        android:title="@string/add_new_car"/>
+    <item
+        android:icon="@drawable/service"
+        android:id="@+id/navrec"
+        android:title="@string/orders_record"/>
+    <item
+        android:icon="@drawable/booking"
+        android:id="@+id/navmyres"
+        android:title="@string/my_reservation"/>
+</group>
+<group android:id="@+id/group3">
+    <item
+        android:icon="@drawable/contactus"
+        android:id="@+id/navcontactUs"
+        android:title="@string/contact_us"/>
+    <item
+        android:icon="@drawable/info"
+        android:id="@+id/navaboutUs"
+        android:title="@string/about_us"/>
+</group>
+
+</menu>
