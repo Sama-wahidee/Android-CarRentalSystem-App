@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +29,9 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
 DrawerLayout drawerLayout;
 ImageButton imageButton;
 NavigationView navigationView;
-
+///
+    private ActionBarDrawerToggle toggle;
+////
 RecyclerView recyclerView;
 Adapter adapter;
 List<Car> cars;
@@ -62,13 +66,24 @@ List<Car> cars;
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemId= menuItem.getItemId();
-                if (itemId==R.id.navSetting){
-                    Toast.makeText(MainActivity2.this, "Setting Cilcked",Toast.LENGTH_SHORT).show();
+                if (itemId==R.id.AdminSettingOption){
+                    Toast.makeText(MainActivity2.this, "Account Setting Option",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, manageAdminAcc_Activity.class);
+                    startActivity(intent);
                 }
+                if (itemId==R.id.addCarOption){
+                    Toast.makeText(MainActivity2.this, "Add Car Page",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, AddCarActivity.class);
+                    startActivity(intent);
+                }
+
                 drawerLayout.close();
                 return false;
             }
         });
+
+
+
     }
 
 

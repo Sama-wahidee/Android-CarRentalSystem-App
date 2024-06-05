@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".manageAdminAcc_Activity"
+    android:id="@+id/scroll_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    style="@style/AddStyle"
+    android:background="@color/darkgray">
+
+    <LinearLayout
+        android:id="@+id/manage_user"
+        style="@style/AddStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Include The Header Layout -->
+        <include
+            android:id="@+id/header"
+            layout="@layout/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/title1"
+            android:background="@drawable/manage_box"
+            android:fontFamily="@font/font1"
+            android:textColor="@color/darkgray"
+            android:textSize="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textColorHighlight="@color/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text=" Personal Information:-  " />
+
+        <!-- Username -->
+        <LinearLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="16dp">
+
+            <TextView
+                android:id="@+id/username_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Username:  "
+                android:textColor="@android:color/white"
+                style="@style/AddStyle" />
+
+            <EditText
+                android:id="@+id/username_edit_text"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="12dp"
+                android:text="username123"
+                style="@style/AddStyle"
+                android:background="@drawable/edittxt_border"
+                android:textColor="@android:color/white"
+                android:enabled="false"
+                android:padding="8dp" />
+
+            <ImageView
+                android:id="@+id/username_edit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pen"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- Password -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/password_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Password:  "
+                android:textColor="@android:color/white"
+                style="@style/AddStyle"
+                />
+
+            <EditText
+                android:id="@+id/password_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:inputType="textPassword"
+                android:text="********"
+                android:background="@drawable/edittxt_border"
+                android:textColor="@android:color/white"
+                android:enabled="false"
+                style="@style/AddStyle"
+                android:padding="8dp" />
+
+            <ImageView
+                android:id="@+id/password_edit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pen"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- Update Email Address -->
+        <TextView
+            android:id="@+id/line1"
+            style="@style/AddStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="_______________________________________________ "
+            android:textColor="@color/lightestGreen" />
+
+        <TextView
+            android:id="@+id/title2"
+            android:background="@drawable/manage_box"
+            android:fontFamily="@font/font1"
+            android:textColor="@color/darkgray"
+            android:textSize="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textColorHighlight="@color/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text=" Contact Information:-  " />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/email_label"
+                style="@style/AddStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email:       "
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/email_edit_text"
+                style="@style/AddStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittxt_border"
+                android:enabled="false"
+                android:padding="8dp"
+                android:text="example@example.com"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/email_edit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/pen" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/phone_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone:      "
+                style="@style/AddStyle"
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/phone_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edittxt_border"
+                android:enabled="false"
+                style="@style/AddStyle"
+                android:padding="8dp"
+                android:text="059874562"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/phone_edit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pen"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- Update Mailing Address -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/address_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/AddStyle"
+                android:text="Address:  "
+                android:textColor="@android:color/white" />
+
+            <EditText
+                android:id="@+id/address_edit_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ramallah"
+                android:background="@drawable/edittxt_border"
+                android:textColor="@android:color/white"
+                android:enabled="false"
+                style="@style/AddStyle"
+                android:padding="8dp" />
+
+            <ImageView
+                android:id="@+id/address_edit_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pen"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/line2"
+            style="@style/AddStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="_______________________________________________ "
+            android:textColor="@color/lightestGreen" />
+
+        <!-- Delete Account -->
+
+        <Button
+            android:id="@+id/save_button"
+            style="@style/ChooserBtnShape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="  Save Changes  " />
+
+    </LinearLayout>
+</ScrollView>

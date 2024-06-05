@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCarActivity"
+    android:background="@color/darkgray">
+
+    <!-- Include The Header Layout -->
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Content Section in a Scrollable View -->
+    <ScrollView
+        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        style="@style/AddStyle"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Begin LinearLayout: Vertical container for content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            style="@style/AddStyle"
+            android:padding="16dp">
+
+            <!-- Collapsible Content for Car Information -->
+            <TextView
+                android:id="@+id/car_info_header"
+                style="@style/AddStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_box"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:layout_marginTop="40dp"
+                android:text="Car Information"
+                android:textColor="@color/gray"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <!-- Begin LinearLayout: Collapsible content for Car Information -->
+            <LinearLayout
+                android:id="@+id/car_info_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                style="@style/AddStyle"
+                android:padding="8dp">
+
+                <!-- Car Make ComboBox -->
+                <!-- Begin LinearLayout: Container for Car Make selection -->
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/car_make_layout"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/makeLabel"-->
+<!--                        style="@style/ReqStyle"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Car Make:"-->
+<!--                        android:layout_marginEnd="8dp"/>-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/makeSpinner"-->
+<!--                        android:background="@drawable/spinner"-->
+<!--                        android:layout_width="85dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:prompt="@string/select_car_make"/>-->
+<!--                </LinearLayout>-->
+<!--                 End LinearLayout: Container for Car Make selection -->
+
+                <!-- Car Model ComboBox -->
+                <!-- Begin LinearLayout: Container for Car Model selection -->
+                <LinearLayout
+                    android:id="@+id/car_model_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/modelLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Car Model:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/modelSpinner"
+                        android:background="@drawable/spinner"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/select_car_model"/>
+                </LinearLayout>
+                <!-- End LinearLayout: Container for Car Model selection -->
+
+                <!-- Year ComboBox -->
+                <!-- Begin LinearLayout: Container for Year selection -->
+                <LinearLayout
+                    android:id="@+id/year_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/yearLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Year of Manufacture:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/yeaSpinner"
+                        android:background="@drawable/spinner"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/select_year"/>
+                </LinearLayout>
+                <!-- End LinearLayout: Container for Year selection -->
+
+                <!-- Vehicle Identification Number (VIN) EditText -->
+                <!-- Begin LinearLayout: Container for VIN input -->
+                <LinearLayout
+                    android:id="@+id/vin_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/vinLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vehicle Identification Number:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/vinEditText"
+                        style="@style/HintStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/vin_hint"/>
+                </LinearLayout>
+                <!-- End LinearLayout: Container for VIN input -->
+
+
+            </LinearLayout>
+            <!-- End LinearLayout: Collapsible content for Car Information -->
+
+            <!-- Rental Car Information Section -->
+            <TextView
+                android:id="@+id/rental_info_header"
+                style="@style/AddStyle"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_box"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:text="Rental Information"
+                android:textColor="@color/gray"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <!-- Begin LinearLayout: Collapsible content for Rental Car Information -->
+            <LinearLayout
+                android:id="@+id/rental_info_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                style="@style/AddStyle"
+                android:padding="8dp">
+
+                <!-- Daily Rental Price -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dailyRentalPriceLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daily Rental Price In ₪:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/dailyRentalPriceEditText"
+                        style="@style/HintStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="50"
+                        android:textColorHint="#beffdd"/>
+                </LinearLayout>
+
+<!--                &lt;!&ndash; Weekly Rental Price &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/weeklyRentalPriceLabel"-->
+<!--                        style="@style/ReqStyle"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Weekly Rental Price:"-->
+<!--                        android:layout_marginEnd="8dp"/>-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/weeklyRentalPriceEditText"-->
+<!--                        style="@style/HintStyle"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:hint="$300 "-->
+<!--                        android:textColorHint="#beffdd"/>-->
+<!--                </LinearLayout>-->
+
+<!--                &lt;!&ndash; Monthly Rental Price &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/monthlyRentalPriceLabel"-->
+<!--                        style="@style/ReqStyle"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Monthly Rental Price:"-->
+<!--                        android:layout_marginEnd="8dp"/>-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/monthlyRentalPriceEditText"-->
+<!--                        style="@style/HintStyle"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:hint="$1000 "-->
+<!--                        android:textColorHint="#beffdd"/>-->
+<!--                </LinearLayout>-->
+
+                <!-- Availability Status -->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/availabilityStatusLabel"-->
+<!--                        style="@style/ReqStyle"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Availability Status:"-->
+<!--                        android:layout_marginEnd="8dp"/>-->
+
+<!--                    <Spinner-->
+<!--                        android:id="@+id/availabilityStatusSpinner"-->
+<!--                        android:background="@drawable/spinner"-->
+<!--                        android:layout_width="110dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:prompt="@string/select_availability_status"/>-->
+<!--                </LinearLayout>-->
+
+                <!-- Rental Conditions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/rentalConditionsLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Descreption:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/rentalConditionsEditText"
+                        style="@style/HintStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Car Details"
+                        android:textColorHint="#beffdd"
+                        android:inputType="textMultiLine"/>
+                </LinearLayout>
+                <!-- End LinearLayout: Container for Car Cost input -->
+
+            </LinearLayout>
+            <!-- End LinearLayout: Collapsible content for Rental Car Information -->
+
+            <!-- Specifications Information Section -->
+            <TextView
+                android:id="@+id/specifications_info_header"
+                style="@style/AddStyle"
+                android:layout_marginTop="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/add_box"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="12dp"
+                android:text="Specifications Information"
+                android:textColor="@color/gray"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <!-- Begin LinearLayout: Collapsible content for Specifications Information -->
+            <LinearLayout
+                android:id="@+id/specifications_info_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                style="@style/AddStyle"
+                android:padding="8dp">
+
+<!--                &lt;!&ndash; Engine Type &ndash;&gt;-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/engineTypeLabel"-->
+<!--                        style="@style/ReqStyle"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Engine Type:"-->
+<!--                        android:layout_marginEnd="8dp"/>-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/engineTypeEditText"-->
+<!--                        style="@style/HintStyle"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:hint="V6, Electric"-->
+<!--                        android:textColorHint="#beffdd"/>-->
+<!--                </LinearLayout>-->
+
+                <!-- Fuel Type -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/fuelTypeLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fuel Type:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/fuelTypeSpinner"
+                        android:background="@drawable/spinner"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/fuelType"/>
+                </LinearLayout>
+
+                <!-- Transmission Type -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/transmissionTypeLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Transmission Type:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/transmissionTypeEditText"
+                        style="@style/HintStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Automatic, Manual"
+                        android:textColorHint="#beffdd"/>
+                </LinearLayout>
+
+                <!-- Mileage -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/mileageLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mileage:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/mileageEditText"
+                        style="@style/HintStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="10,000"
+                        android:textColorHint="#beffdd"/>
+                </LinearLayout>
+
+                <!-- Color -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/colorLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Color:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <EditText
+                        android:id="@+id/colorEditText"
+                        style="@style/HintStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Red, Blue, Black"
+                        android:textColorHint="#beffdd"/>
+                </LinearLayout>
+
+                <!-- Number of Seats -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/numberOfSeatsLabel"
+                        style="@style/ReqStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Number of Seats:"
+                        android:layout_marginEnd="8dp"/>
+
+                    <Spinner
+                        android:id="@+id/numberOfSeatsSpinner"
+                        android:background="@drawable/spinner"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/numberOfSeats"/>
+                </LinearLayout>
+
+            </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/selectImageButton"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Attach Image"-->
+<!--                android:layout_marginTop="40dp"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                style="@style/BtnsStyle"-->
+<!--                android:onClick="selectImage" />-->
+            <!-- _______________ Starts Btn Layout __________________-->
+
+            <!-- _______________ Starts Btn Layout __________________-->
+
+            <!-- _______________ Starts Btn Layout __________________-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="0dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/AddStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:text="Add Car Photo:  "
+                    android:gravity="center_vertical" />
+
+                <ImageView
+                    android:id="@+id/selectImageButton"
+                    android:layout_width="34dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="0dp"
+                    android:onClick="openFileChooser"
+                    android:src="@drawable/camera" />
+
+            </LinearLayout>
+
+
+            <!-- _______________ Ends Btn Layout __________________-->
+
+            <!-- _______________ Ends Btn Layout __________________-->
+
+
+
+            <Button
+                android:id="@+id/AddCar"
+                style="@style/BtnsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:clickable="true"
+                android:layout_marginTop="20dp"
+                android:text="      Add Car     " />
+            <!--                android:onClick="openUserManage"-->
+
+            <!-- End LinearLayout: Collapsible content for Specifications Information -->
+
+
+
+
+
+        </LinearLayout>
+        <!-- End LinearLayout: Vertical container for content -->
+
+    </ScrollView>
+    <!-- End ScrollView: Content Section -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

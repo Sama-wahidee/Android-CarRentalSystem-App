@@ -21,4 +21,22 @@
     <string name="about_us">About Us</string>
     <string name="user_name">User Name</string>
     <string name="user_email">User Email</string>
+
+<!--    _____________________ **SHAHD** ________________________________-->
+    <string name="select_car_make">Select Car Make</string>
+    <string name="select_car_model">Select Car Model</string>
+    <string name="select_year">Select Year of Manufacture</string>
+    <!--    <string name="year_manufacture_hint">Year of Manufacture (e.g., 2022)</string>-->
+    <string name="vin_hint"><font color="#beffdd">VIN</font></string>
+    <string name="specifications_hint"><font color="#beffdd">Specifications</font></string>
+    <string name="select_availability_status">Select Availability Status</string>
+    <string name="select_picture">Select Picture</string>
+    <string name="numberOfSeats"><font color="#beffdd">Number Of Seats</font></string>
+    <string name="fuelType"><font color="#beffdd">Fuel Type</font></string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <!--    _____________________ **SHAHD** ________________________________-->
+
+
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BtnsStyle" >
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:backgroundTint">@color/green</item>
+        <item name="android:fontFamily">@font/font2</item>
+        <item name="android:textSize">23dp</item>
+    </style>
+
+    <style name="ChooserBtnShape" >
+        <item name="android:textColor">@color/darkgray</item>
+        <item name="android:backgroundTint">@color/lightestGreen</item>
+        <item name="android:fontFamily">@font/font2</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:shape">rectangle</item>
+        <item name="android:strokeColor">@color/white</item>
+
+    </style>
+    <!-- =====================AddStyle Used In AddCarActivity=================== -->
+    <style name="AddStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/font1</item>
+    </style>
+    <!-- =====================AddStyle Used In AddCarActivity=================== -->
+    <style name="TitleStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/font1</item>
+    </style>
+    <!-- =====================ReqStyle Used In AddCarActivity=================== -->
+    <style name="ReqStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:fontFamily">@font/font1</item>
+        <item name="android:padding">5dp</item>
+    </style>
+    <!-- =====================ReqStyle Used In AddCarActivity=================== -->
+    <style name="HintStyle">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:fontFamily">@font/font1</item>
+    </style>
+    <!-- ======================Custom Dialog Theme=============================== -->
+    <style name="CustomAlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/lightestGreen</item>
+        <item name="android:fontFamily">@font/font2</item>
+        <item name="android:textSize">30dp</item>
+        <item name="android:textColorPrimary">@color/darkgray</item>
+        <item name="android:colorAccent">@color/gray</item>
+    </style>
+    <!-- ======================Custom Dialog Theme=============================== -->
+    <style name="DialogButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+</resources>

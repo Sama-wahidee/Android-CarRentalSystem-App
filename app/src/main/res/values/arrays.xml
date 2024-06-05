@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="car_makes">
+        <item>\u0020\u0020\u0020Select</item>
+        <item>Toyota</item>
+        <item>Honda</item>
+        <!-- Add more car makes as needed -->
+    </string-array>
+
+    <string-array name="car_models">
+        <item>\u0020\u0020\u0020Select</item>
+        <item>Corolla</item>
+        <item>Civic</item>
+        <item>New Model</item>
+    </string-array>
+
+    <string-array name="years">
+        <item>\u0020\u0020\u0020Select</item>
+        <item>2003</item>
+        <item>2001</item>
+        <!-- Add more years as needed -->
+    </string-array>
+
+    <string-array name="avilability_status">
+        <item>\u0020\u0020\u0020Select</item>
+        <item>Avilable</item>
+        <item>Not Avilable</item>
+    </string-array>
+
+    <string-array name="fuelType">
+        <item>\u0020\u0020\u0020Select</item>
+        <item>Diesel</item>
+        <item>Petrol</item>
+        <!-- Add more years as needed -->
+    </string-array>
+
+    <string-array name="seatsNumber">
+        <item>\u0020\u0020\u0020Select</item>
+        <item>4</item>
+        <item>5</item>
+        <item>7</item>
+
+        <!-- Add more years as needed -->
+    </string-array>
+</resources>

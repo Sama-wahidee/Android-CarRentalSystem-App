@@ -3,13 +3,13 @@
     <group android:id="@+id/group1">
         <item
             android:icon="@drawable/setting"
-            android:id="@+id/navSetting"
+            android:id="@+id/AdminSettingOption"
             android:title="@string/account_setting"/>
     </group>
 <group android:id="@+id/group2">
     <item
         android:icon="@drawable/transport"
-        android:id="@+id/navadd"
+        android:id="@+id/addCarOption"
         android:title="@string/add_new_car"/>
     <item
         android:icon="@drawable/service"
