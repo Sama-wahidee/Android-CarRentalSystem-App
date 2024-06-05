@@ -19,6 +19,15 @@
         android:icon="@drawable/booking"
         android:id="@+id/navmyres"
         android:title="@string/my_reservation"/>
+
+<!--0000000000000000000000000000000000000000-->
+    <item
+        android:icon="@drawable/report_icon"
+        android:id="@+id/reportOption"
+        android:title="Report"/>
+    <!--0000000000000000000000000000000000000000-->
+
+
 </group>
 <group android:id="@+id/group3">
     <item

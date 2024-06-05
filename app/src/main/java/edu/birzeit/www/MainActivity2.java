@@ -76,6 +76,11 @@ List<Car> cars;
                     Intent intent = new Intent(MainActivity2.this, AddCarActivity.class);
                     startActivity(intent);
                 }
+                if (itemId==R.id.reportOption){
+                    Toast.makeText(MainActivity2.this, "Report Page",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, ReportActivity.class);
+                    startActivity(intent);
+                }
 
                 drawerLayout.close();
                 return false;

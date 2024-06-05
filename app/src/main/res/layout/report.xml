@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkgray">
+
+    <!-- Include The Header Layout -->
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-36dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp"
+            android:gravity="center">
+            <!--     *********************************** TOTAL CARS START **************************-->
+            <TextView
+                android:id="@+id/TotalTitleTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/font2"
+                android:layout_marginBottom="5dp"
+                android:text="TOTAL cars"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="40dp"
+                />
+
+            <ImageView
+                android:id="@+id/TotalCArsIcon"
+                android:layout_width="170dp"
+                android:layout_height="152dp"
+                android:layout_gravity="center"
+                android:background="@drawable/add_box"
+                app:srcCompat="@drawable/img_3" />
+
+
+            <TextView
+                android:id="@+id/TotalCarsTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font2"
+                android:background="@color/white"
+                android:text="300"
+                android:layout_gravity="center"
+                android:textColor="@color/darkgray"
+                android:gravity="center"
+                android:layout_marginBottom="50dp"
+                android:textSize="50dp"
+                />
+            <!--    *********************************** TOTAL CARS END **************************-->
+
+
+            <!--     *********************************** RENTED CARS START **************************-->
+
+            <TextView
+                android:id="@+id/RentTitleTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/font2"
+                android:text="Rented Out"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="40dp"
+                />
+
+            <ImageView
+                android:id="@+id/rentedCarsIcon"
+                android:layout_width="170dp"
+                android:layout_height="152dp"
+                android:layout_gravity="center"
+                android:background="@drawable/add_box"
+                app:srcCompat="@drawable/car_rent" />
+
+
+            <TextView
+                android:id="@+id/rentedCarsTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font2"
+                android:background="@color/white"
+                android:text="120"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50dp"
+                android:textColor="@color/darkgray"
+                android:gravity="center"
+                android:textSize="50dp"
+                />
+            <!--     *********************************** RENTED CARS END **************************-->
+
+
+            <!--     *********************************** AVILABLE CARS START **************************-->
+
+            <TextView
+                android:id="@+id/avilableTitleTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/font2"
+                android:text="Avilable Cars"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="35dp"
+                />
+
+            <ImageView
+                android:id="@+id/avilabileCarIcon"
+                android:layout_width="170dp"
+                android:layout_height="152dp"
+                android:layout_gravity="center"
+                android:background="@drawable/add_box"
+                app:srcCompat="@drawable/img_2" />
+
+
+            <TextView
+                android:id="@+id/AvilabileCarsTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font2"
+                android:background="@color/white"
+                android:text="300"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50dp"
+                android:textColor="@color/darkgray"
+                android:gravity="center"
+                android:textSize="50dp"
+                />
+            <!--     *********************************** AVILABLE CARS END **************************-->
+
+
+            <!--     *********************************** REPPAIR CARS START **************************-->
+            <TextView
+                android:id="@+id/RepairTitleTxt"
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/font2"
+                android:text="Under Maintenance"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="37dp"
+                />
+
+
+            <ImageView
+                android:id="@+id/repairCarIcon"
+                android:layout_width="170dp"
+                android:layout_height="152dp"
+                android:layout_gravity="center"
+                android:background="@drawable/add_box"
+                app:srcCompat="@drawable/car" />
+
+
+            <TextView
+                android:id="@+id/repairCarTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font2"
+                android:background="@color/white"
+                android:text="7"
+                android:layout_gravity="center"
+                android:textColor="@color/darkgray"
+                android:gravity="center"
+                android:layout_marginBottom="50dp"
+                android:textSize="50dp"
+                />
+            <!--     *********************************** REPPAIR CARS END **************************-->
+
+
+            <!--     *********************************** CUSTOMER CARS START **************************-->
+            <TextView
+                android:id="@+id/CustomerTitleTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/font2"
+                android:text="Customers"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="40dp"
+                />
+
+
+            <ImageView
+                android:id="@+id/customerIcon"
+                android:layout_width="170dp"
+                android:layout_height="152dp"
+                android:layout_gravity="center"
+                android:background="@drawable/add_box"
+                app:srcCompat="@drawable/customer" />
+
+
+            <TextView
+                android:id="@+id/customerTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font2"
+                android:background="@color/white"
+                android:text="150"
+                android:layout_gravity="center"
+                android:textColor="@color/darkgray"
+                android:layout_marginBottom="50dp"
+                android:gravity="center"
+                android:textSize="50dp"
+                />
+            <!--     *********************************** CUSTOMER CARS END **************************-->
+
+
+            <!--     *********************************** REVENUE CARS START **************************-->
+            <TextView
+                android:id="@+id/revenueTitleTxt"
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/font2"
+                android:text="Revenue\n(last month)"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:textSize="35dp"
+                />
+
+
+            <ImageView
+                android:id="@+id/revenueIcon"
+                android:layout_width="170dp"
+                android:layout_height="152dp"
+                android:layout_gravity="center"
+                android:background="@drawable/add_box"
+                app:srcCompat="@drawable/revenue" />
+
+
+            <TextView
+                android:id="@+id/revenueTxt"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:fontFamily="@font/font2"
+                android:background="@color/white"
+                android:text="20,000 ₪"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center"
+                android:textColor="@color/darkgray"
+                android:gravity="center"
+                android:textSize="50dp"
+
+                />
+
+            <!--     *********************************** REVENUE CARS END **************************-->
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
