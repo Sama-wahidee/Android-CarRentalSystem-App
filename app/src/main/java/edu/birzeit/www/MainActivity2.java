@@ -90,6 +90,16 @@ Adapter adapter;
                     Intent intent = new Intent(MainActivity2.this, ReportActivity.class);
                     startActivity(intent);
                 }
+                if(itemId==R.id.orders){
+                    Toast.makeText(MainActivity2.this, "Admin Orders Page",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, AdminOrders.class);
+                    startActivity(intent);
+                }
+                if(itemId==R.id.reservations){
+                    Toast.makeText(MainActivity2.this, "Admin Orders Page",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, UserReservations.class);
+                    startActivity(intent);
+                }
 
                 drawerLayout.close();
                 return false;

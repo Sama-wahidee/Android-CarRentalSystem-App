@@ -3,6 +3,7 @@ package edu.birzeit.www;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class userActivty extends AppCompatActivity {
         TextView carPrice = findViewById(R.id.pricetxt);
 
         TextView carDescription = findViewById(R.id.car_description);
+        Button bookBtn = findViewById(R.id.bookbtn);
 
         // Retrieve data from intent
         String name = getIntent().getStringExtra("name");
@@ -43,6 +45,13 @@ public class userActivty extends AppCompatActivity {
         carPrice.setText("Price per day: $" + rentPrice);
        // carModel.setText("Model: " + model);
         carDescription.setText("Description: " + description);
+        bookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(userActivty.this, BookingDetails.class);
+                startActivity(intent);
+            }
+        });
 
     }
     public void backbtn(View view){
