@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 public class userActivty extends AppCompatActivity {
 
     @Override
@@ -16,14 +18,31 @@ public class userActivty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.user_activtiy);
-        String name=getIntent().getStringExtra("name");
-        int image=getIntent().getIntExtra("image",0);
-       TextView carname=findViewById(R.id.nametxt);
-        ImageView img=findViewById(R.id.carimg);
+        ImageView carImage = findViewById(R.id.carimg);
+        TextView carName = findViewById(R.id.nametxt);
+       // TextView carSeats = findViewById(R.id.car_seats);
+       // TextView carSpeed = findViewById(R.id.car_speed);
+        TextView carPrice = findViewById(R.id.pricetxt);
 
+        TextView carDescription = findViewById(R.id.car_description);
 
-        carname.setText(name);
-        img.setImageResource(image);
+        // Retrieve data from intent
+        String name = getIntent().getStringExtra("name");
+        String imageUrl = getIntent().getStringExtra("imageUrl");
+        int numberOfSeats = getIntent().getIntExtra("numberOfSeats", 0);
+        int topSpeed = getIntent().getIntExtra("topSpeed", 0);
+        double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
+        String model = getIntent().getStringExtra("model");
+        String description = getIntent().getStringExtra("description");
+
+        // Set data to views
+        Glide.with(this).load(imageUrl).into(carImage);
+        carName.setText(name);
+       // carSeats.setText("Seats: " + numberOfSeats);
+       // carSpeed.setText("Top Speed: " + topSpeed + " km/h");
+        carPrice.setText("Price per day: $" + rentPrice);
+       // carModel.setText("Model: " + model);
+        carDescription.setText("Description: " + description);
 
     }
     public void backbtn(View view){

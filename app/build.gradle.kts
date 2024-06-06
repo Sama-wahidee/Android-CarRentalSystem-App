@@ -46,5 +46,9 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.28")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.android.volley:volley:1.2.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
 }
 

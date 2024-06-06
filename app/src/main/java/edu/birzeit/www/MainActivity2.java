@@ -2,6 +2,7 @@ package edu.birzeit.www;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,7 +18,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,12 +39,14 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
 DrawerLayout drawerLayout;
 ImageButton imageButton;
 NavigationView navigationView;
+    private static final String get_url = "http://10.0.2.2:80/project_android/get_cars.php";
 ///
     private ActionBarDrawerToggle toggle;
 ////
 RecyclerView recyclerView;
 Adapter adapter;
-List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,15 +58,12 @@ List<Car> cars;
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        cars = new ArrayList<Car>();
-        Car newCar = new Car("BMW", R.drawable.bmwc, 5, 200, 100,"m4");
-        Car newCar1 = new Car("Cadillac ", R.drawable.cadillacc, 7, 200, 200,"Escalade ");
 
-        cars.add(newCar);
-        cars.add(newCar1);
 
-        adapter = new Adapter(cars , this);
+
+        adapter = new Adapter(MainActivity2.this ,cars , this);
         recyclerView.setAdapter(adapter);
+        loadCars(adapter);
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,12 +95,57 @@ List<Car> cars;
 
     }
 
+    private void loadCars(final Adapter adapter) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, get_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray array = new JSONArray(response);
+
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject object = array.getJSONObject(i);
+                                String name = object.optString("name", "Unknown");
+                                String description = object.optString("description", "No description available");
+                                String vinNumber = object.optString("vinNumber", "");
+                                String fuelType = object.optString("fuelType", "");
+                                String transmission = object.optString("transmission", "");
+                                int numberOfSeats = object.optInt("numberOfSeats", 0);
+                                double rentPrice = object.optDouble("rentPrice", 0.0);
+                                String color = object.optString("color", "");
+                                String model = object.optString("model", "");
+                                int topSpeed = object.optInt("topSpeed", 0);
+                                String imageUrl = object.optString("image", "http://10.0.2.2:80/test_and/images/default.png");
+
+                                Car car = new Car(name, description, vinNumber, fuelType, transmission,
+                                        numberOfSeats, rentPrice, color, model, topSpeed, imageUrl);
+                                cars.add(car);
+                            }
+
+                            // Notify the adapter that data has been changed
+                            adapter.notifyDataSetChanged();
+
+                        } catch (JSONException e) {
+                            Log.e("Volley Error", "JSON parsing error: " + e.getMessage());
+                            Toast.makeText(MainActivity2.this, "JSON parsing error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Volley Error", "Volley error: " + error.getMessage());
+                Toast.makeText(MainActivity2.this, "Volley error: " + error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        Volley.newRequestQueue(MainActivity2.this).add(stringRequest);
+    }
 
     @Override
     public void onitemclick(int position) {
         Intent intent=new Intent(MainActivity2.this , adminActivity.class);
         intent.putExtra("name", cars.get(position).getName());
-        intent.putExtra("reprice", cars.get(position).getPricePerDay());
+        intent.putExtra("reprice", cars.get(position).getRentPrice());
         intent.putExtra("image", cars.get(position).getImageUrl());
         startActivity(intent);
 

@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 public class adminActivity extends AppCompatActivity {
 
     @Override
@@ -16,14 +18,31 @@ public class adminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.admin_activity);
+        ImageView carImage = findViewById(R.id.carimg);
+        TextView carName = findViewById(R.id.nametxt);
+        // TextView carSeats = findViewById(R.id.car_seats);
+        // TextView carSpeed = findViewById(R.id.car_speed);
+        TextView carPrice = findViewById(R.id.pricetxt);
 
+        TextView carDescription = findViewById(R.id.car_description);
 
-        String name=getIntent().getStringExtra("name");
-        int image=getIntent().getIntExtra("image",0);
-    TextView namecar=findViewById(R.id.nametxt);
-    ImageView img=findViewById(R.id.carimg);
-    namecar.setText(name);
-    img.setImageResource(image);
+        // Retrieve data from intent
+        String name = getIntent().getStringExtra("name");
+        String imageUrl = getIntent().getStringExtra("imageUrl");
+        int numberOfSeats = getIntent().getIntExtra("numberOfSeats", 0);
+        int topSpeed = getIntent().getIntExtra("topSpeed", 0);
+        double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
+        String model = getIntent().getStringExtra("model");
+        String description = getIntent().getStringExtra("description");
+
+        // Set data to views
+        Glide.with(this).load(imageUrl).into(carImage);
+        carName.setText(name);
+        // carSeats.setText("Seats: " + numberOfSeats);
+        // carSpeed.setText("Top Speed: " + topSpeed + " km/h");
+        carPrice.setText("Price per day: $" + rentPrice);
+        // carModel.setText("Model: " + model);
+        carDescription.setText("Description: " + description);
 
     }
     public void backbtn(View view){

@@ -1,73 +1,69 @@
 package edu.birzeit.www;
 
 public class Car {
-
+    private int id;
     private String name;
-
+    private String description;
+    private String vinNumber;
+    private String fuelType;
+    private String transmission;
+    private int numberOfSeats;
+    private double rentPrice;
+    private String color;
     private String model;
+    private int topSpeed;
+    private String imageUrl;
 
-    private int imageUrl;
-    private int seatCount;
-    private int speed;
-    private int pricePerDay;
-
-
-    // Constructor with all parameters
-    public Car(String name, int imageUrl, int seatCount, int speed, int pricePerDay,String model) {
+    // Constructor
+    public Car(String name, String description, String vinNumber, String fuelType, String transmission,
+               int numberOfSeats, double rentPrice, String color, String model, int topSpeed, String imageUrl) {
         this.name = name;
-        this.imageUrl = imageUrl;
-        this.seatCount = seatCount;
-        this.speed = speed;
-        this.pricePerDay = pricePerDay;
-        this.model=model;
-    }
-
-    // Getters and setters for all fields
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(int imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public int getSeatCount() {
-        return seatCount;
-    }
-
-    public void setSeatCount(int seatCount) {
-        this.seatCount = seatCount;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public int  getPricePerDay() {
-        return pricePerDay;
-    }
-
-    public void setPricePerDay(int pricePerDay) {
-        this.pricePerDay = pricePerDay;
-    }
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
+        this.description = description;
+        this.vinNumber = vinNumber;
+        this.fuelType = fuelType;
+        this.transmission = transmission;
+        this.numberOfSeats = numberOfSeats;
+        this.rentPrice = rentPrice;
+        this.color = color;
         this.model = model;
+        this.topSpeed = topSpeed;
+        this.imageUrl = imageUrl;
     }
+
+    // Getters and setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getVinNumber() { return vinNumber; }
+    public void setVinNumber(String vinNumber) { this.vinNumber = vinNumber; }
+
+    public String getFuelType() { return fuelType; }
+    public void setFuelType(String fuelType) { this.fuelType = fuelType; }
+
+    public String getTransmission() { return transmission; }
+    public void setTransmission(String transmission) { this.transmission = transmission; }
+
+    public int getNumberOfSeats() { return numberOfSeats; }
+    public void setNumberOfSeats(int numberOfSeats) { this.numberOfSeats = numberOfSeats; }
+
+    public double getRentPrice() { return rentPrice; }
+    public void setRentPrice(double rentPrice) { this.rentPrice = rentPrice; }
+
+    public String getColor() { return color; }
+    public void setColor(String color) { this.color = color; }
+
+    public String getModel() { return model; }
+    public void setModel(String model) { this.model = model; }
+
+    public int getTopSpeed() { return topSpeed; }
+    public void setTopSpeed(int topSpeed) { this.topSpeed = topSpeed; }
+
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 }
