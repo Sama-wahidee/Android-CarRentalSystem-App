@@ -27,9 +27,7 @@
         <activity
             android:name=".BottomDialogOrders"
             android:exported="false" />
-        <activity
-            android:name=".header_layout"
-            android:exported="false" />
+
         <activity
             android:name=".AdminOrders"
             android:exported="false" />
