@@ -13,11 +13,11 @@
         android:title="@string/add_new_car"/>
     <item
         android:icon="@drawable/service"
-        android:id="@+id/navrec"
+        android:id="@+id/orders"
         android:title="@string/orders_record"/>
     <item
         android:icon="@drawable/booking"
-        android:id="@+id/navmyres"
+        android:id="@+id/reservations"
         android:title="@string/my_reservation"/>
 
 <!--0000000000000000000000000000000000000000-->
