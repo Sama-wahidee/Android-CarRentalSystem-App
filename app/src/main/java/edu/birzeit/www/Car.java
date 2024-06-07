@@ -2,7 +2,7 @@ package edu.birzeit.www;
 
 public class Car {
     private int id;
-    private String name;
+
     private String description;
     private String vinNumber;
     private String fuelType;
@@ -13,11 +13,20 @@ public class Car {
     private String model;
     private int topSpeed;
     private String imageUrl;
+    private int year;
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
 
     // Constructor
-    public Car(String name, String description, String vinNumber, String fuelType, String transmission,
-               int numberOfSeats, double rentPrice, String color, String model, int topSpeed, String imageUrl) {
-        this.name = name;
+    public Car( String description, String vinNumber, String fuelType, String transmission,
+               int numberOfSeats, double rentPrice, String color, String model, int topSpeed, String imageUrl, int year) {
+
         this.description = description;
         this.vinNumber = vinNumber;
         this.fuelType = fuelType;
@@ -28,14 +37,14 @@ public class Car {
         this.model = model;
         this.topSpeed = topSpeed;
         this.imageUrl = imageUrl;
+        this.year=year;
     }
 
     // Getters and setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }

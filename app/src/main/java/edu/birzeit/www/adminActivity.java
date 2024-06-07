@@ -27,12 +27,12 @@ public class adminActivity extends AppCompatActivity {
         TextView carDescription = findViewById(R.id.car_description);
 
         // Retrieve data from intent
-        String name = getIntent().getStringExtra("name");
+        String name = getIntent().getStringExtra("model");
         String imageUrl = getIntent().getStringExtra("imageUrl");
         int numberOfSeats = getIntent().getIntExtra("numberOfSeats", 0);
         int topSpeed = getIntent().getIntExtra("topSpeed", 0);
         double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
-        String model = getIntent().getStringExtra("model");
+        String model = getIntent().getStringExtra("year");
         String description = getIntent().getStringExtra("description");
 
         // Set data to views

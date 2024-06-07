@@ -56,7 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         Glide.with(context).load(car.getImageUrl()).into(imageView);
 
         TextView nameTxt = cardView.findViewById(R.id.car_name);
-        nameTxt.setText(car.getName());
+        nameTxt.setText(car.getModel());
 
         TextView seatTxt = cardView.findViewById(R.id.seat_count);
         seatTxt.setText(String.valueOf(car.getNumberOfSeats()+" PASSENGERS"));
@@ -76,12 +76,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 else{
                      intent = new Intent(context, userActivty.class);
                 }
-                intent.putExtra("name", car.getName());
+                intent.putExtra("model", car.getModel());
                 intent.putExtra("imageUrl", car.getImageUrl());
                 intent.putExtra("numberOfSeats", car.getNumberOfSeats());
                 intent.putExtra("topSpeed", car.getTopSpeed());
                 intent.putExtra("rentPrice", car.getRentPrice());
-                intent.putExtra("model", car.getModel());
+                intent.putExtra("year", car.getYear());
                 intent.putExtra("description", car.getDescription());
                 context.startActivity(intent);
             }
