@@ -27,7 +27,7 @@
         android:layout_below="@+id/carimg"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="27dp"
         android:fontFamily="sans-serif"
 
         android:textColor="#FFFF"
@@ -42,7 +42,7 @@
         android:layout_below="@id/nametxt"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="sans-serif"
         android:text="The BMW M4: A high-performance coupe engineered for exhilarating driving experiences."
         android:textColor="#FFFF"
@@ -61,24 +61,6 @@
         android:textColor="#FFFF"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/bookbtn"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="245dp"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="#5BD3C7"
-        android:shadowColor="#D11414"
-        android:text="Book Now"
-        android:textColor="#000000"
-        android:textColorHighlight="#9A1111"
-        android:textColorHint="#B61E1E"
-        android:textColorLink="#FFEA00"
-        app:rippleColor="#9C2F2F"
-        app:strokeColor="#D82424" />
 
     <TextView
         android:id="@+id/textView2"
@@ -107,7 +89,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="510dp"
         android:layout_marginBottom="87dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true" />
@@ -153,5 +135,18 @@
         android:layout_marginTop="380dp"
         android:layout_marginEnd="23dp"
         app:srcCompat="@drawable/delete" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="190dp"
+        android:layout_marginBottom="20dp"
+        android:text="Navigation:"
+        android:textColor="#FFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
