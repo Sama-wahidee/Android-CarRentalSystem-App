@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/orderdDetailsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reservation Details"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/carname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="  Car Name"
+        android:drawableStart="@drawable/ic_car"/>
+
+    <EditText
+        android:id="@+id/rentdate"
+        android:drawableStart="@drawable/ic_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="  Rental Period"
+        app:layout_constraintTop_toBottomOf="@id/carname"/>
+
+    <EditText
+        android:id="@+id/rentcost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="  Total Rent Cost"
+        android:drawableStart="@drawable/ic_cost"
+        app:layout_constraintTop_toBottomOf="@id/rentdate"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/deleteorder2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#1effaa"
+            android:text="DELETE"
+            android:textColor="#24282f"
+            android:textSize="16dp"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/changedate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#1effaa"
+            android:text="CHANGE DATE"
+            android:textColor="#24282f"
+            android:textSize="16dp"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

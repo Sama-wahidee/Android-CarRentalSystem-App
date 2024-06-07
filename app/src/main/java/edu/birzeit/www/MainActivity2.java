@@ -90,6 +90,16 @@ Adapter adapter;
                     Intent intent = new Intent(MainActivity2.this, ReportActivity.class);
                     startActivity(intent);
                 }
+                if(itemId==R.id.orders){
+                    Toast.makeText(MainActivity2.this, "Admin Orders Page",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, AdminOrders.class);
+                    startActivity(intent);
+                }
+                if(itemId==R.id.reservations){
+                    Toast.makeText(MainActivity2.this, "Admin Orders Page",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, UserReservations.class);
+                    startActivity(intent);
+                }
 
                 drawerLayout.close();
                 return false;
@@ -110,7 +120,7 @@ Adapter adapter;
 
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject object = array.getJSONObject(i);
-                                String name = object.optString("name", "Unknown");
+                               int year = object.optInt("Year", 0);
                                 String description = object.optString("description", "No description available");
                                 String vinNumber = object.optString("vinNumber", "");
                                 String fuelType = object.optString("fuelType", "");
@@ -122,8 +132,8 @@ Adapter adapter;
                                 int topSpeed = object.optInt("topSpeed", 0);
                                 String imageUrl = object.optString("image", "http://10.0.2.2:80/test_and/images/default.png");
 
-                                Car car = new Car(name, description, vinNumber, fuelType, transmission,
-                                        numberOfSeats, rentPrice, color, model, topSpeed, imageUrl);
+                                Car car = new Car( description, vinNumber, fuelType, transmission,
+                                        numberOfSeats, rentPrice, color, model, topSpeed, imageUrl, year);
                                 cars.add(car);
                             }
 
@@ -149,7 +159,7 @@ Adapter adapter;
     @Override
     public void onitemclick(int position) {
         Intent intent=new Intent(MainActivity2.this , adminActivity.class);
-        intent.putExtra("name", cars.get(position).getName());
+        intent.putExtra("model", cars.get(position).getModel());
         intent.putExtra("reprice", cars.get(position).getRentPrice());
         intent.putExtra("image", cars.get(position).getImageUrl());
         startActivity(intent);
