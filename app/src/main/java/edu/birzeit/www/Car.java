@@ -8,7 +8,7 @@ public class Car {
     private String fuelType;
     private String transmission;
     private int numberOfSeats;
-    private double rentPrice;
+    private int rentPrice;
     private String color;
     private String model;
     private int topSpeed;
@@ -25,7 +25,7 @@ public class Car {
 
     // Constructor
     public Car( String description, String vinNumber, String fuelType, String transmission,
-               int numberOfSeats, double rentPrice, String color, String model, int topSpeed, String imageUrl, int year) {
+               int numberOfSeats, int rentPrice, String color, String model, int topSpeed, String imageUrl, int year) {
 
         this.description = description;
         this.vinNumber = vinNumber;
@@ -62,7 +62,7 @@ public class Car {
     public void setNumberOfSeats(int numberOfSeats) { this.numberOfSeats = numberOfSeats; }
 
     public double getRentPrice() { return rentPrice; }
-    public void setRentPrice(double rentPrice) { this.rentPrice = rentPrice; }
+    public void setRentPrice(int rentPrice) { this.rentPrice = rentPrice; }
 
     public String getColor() { return color; }
     public void setColor(String color) { this.color = color; }

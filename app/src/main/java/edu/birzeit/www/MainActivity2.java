@@ -12,8 +12,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,36 +30,36 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.birzeit.www.databinding.ActivityMain2Binding;
-
 public class MainActivity2 extends AppCompatActivity implements recyclerinterface {
 
-DrawerLayout drawerLayout;
-ImageButton imageButton;
-NavigationView navigationView;
+    private DrawerLayout drawerLayout;
+    private ImageButton imageButton;
+    private NavigationView navigationView;
     private static final String get_url = "http://10.0.2.2:80/project_android/get_cars.php";
-///
     private ActionBarDrawerToggle toggle;
-////
-RecyclerView recyclerView;
-Adapter adapter;
-    private final List<Car> cars = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private Adapter adapter;
+    private ImageButton search;
+    private ImageButton filter;
+    ImageButton refresh;
+     final List<Car> cars = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
-        drawerLayout=findViewById(R.id.drawerlayout);
-        imageButton= findViewById(R.id.buttonDrawer);
-        navigationView=findViewById(R.id.navigationView);
+
+        drawerLayout = findViewById(R.id.drawerlayout);
+        imageButton = findViewById(R.id.buttonDrawer);
+        navigationView = findViewById(R.id.navigationView);
         recyclerView = findViewById(R.id.recyclerView);
+        search = findViewById(R.id.search);
+        filter = findViewById(R.id.filter);
+        refresh=findViewById(R.id.refresh);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
-
-
-        adapter = new Adapter(MainActivity2.this ,cars , this);
+        adapter = new Adapter(MainActivity2.this, cars, this);
         recyclerView.setAdapter(adapter);
         loadCars(adapter);
 
@@ -71,32 +69,33 @@ Adapter adapter;
                 drawerLayout.open();
             }
         });
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int itemId= menuItem.getItemId();
-                if (itemId==R.id.AdminSettingOption){
-                    Toast.makeText(MainActivity2.this, "Account Setting Option",Toast.LENGTH_SHORT).show();
+                int itemId = menuItem.getItemId();
+                if (itemId == R.id.AdminSettingOption) {
+                    Toast.makeText(MainActivity2.this, "Account Setting Option", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity2.this, manageAdminAcc_Activity.class);
                     startActivity(intent);
                 }
-                if (itemId==R.id.addCarOption){
-                    Toast.makeText(MainActivity2.this, "Add Car Page",Toast.LENGTH_SHORT).show();
+                if (itemId == R.id.addCarOption) {
+                    Toast.makeText(MainActivity2.this, "Add Car Page", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity2.this, AddCarActivity.class);
                     startActivity(intent);
                 }
-                if (itemId==R.id.reportOption){
-                    Toast.makeText(MainActivity2.this, "Report Page",Toast.LENGTH_SHORT).show();
+                if (itemId == R.id.reportOption) {
+                    Toast.makeText(MainActivity2.this, "Report Page", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity2.this, ReportActivity.class);
                     startActivity(intent);
                 }
-                if(itemId==R.id.orders){
-                    Toast.makeText(MainActivity2.this, "Admin Orders Page",Toast.LENGTH_SHORT).show();
+                if (itemId == R.id.orders) {
+                    Toast.makeText(MainActivity2.this, "Admin Orders Page", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity2.this, AdminOrders.class);
                     startActivity(intent);
                 }
-                if(itemId==R.id.reservations){
-                    Toast.makeText(MainActivity2.this, "Admin Orders Page",Toast.LENGTH_SHORT).show();
+                if (itemId == R.id.reservations) {
+                    Toast.makeText(MainActivity2.this, "Admin Orders Page", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity2.this, UserReservations.class);
                     startActivity(intent);
                 }
@@ -106,11 +105,34 @@ Adapter adapter;
             }
         });
 
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadCars(adapter);
+                SideDrawerFragment sideDrawerFragment = new SideDrawerFragment();
+                sideDrawerFragment.show(getSupportFragmentManager(), "SideDrawerFragment");
+            }
+        });
 
-
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadCars(adapter);
+                SideDrawerFragment1 sideDrawerFragment = new SideDrawerFragment1();
+                sideDrawerFragment.setCarList(cars);
+                sideDrawerFragment.show(getSupportFragmentManager(), "SideDrawerFragment");
+            }
+        });
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    loadCars(adapter);
+                }
+            });
     }
 
     private void loadCars(final Adapter adapter) {
+        cars.clear();
         StringRequest stringRequest = new StringRequest(Request.Method.GET, get_url,
                 new Response.Listener<String>() {
                     @Override
@@ -120,19 +142,19 @@ Adapter adapter;
 
                             for (int i = 0; i < array.length(); i++) {
                                 JSONObject object = array.getJSONObject(i);
-                               int year = object.optInt("Year", 0);
+                                int year = object.optInt("Year", 0);
                                 String description = object.optString("description", "No description available");
                                 String vinNumber = object.optString("vinNumber", "");
                                 String fuelType = object.optString("fuelType", "");
                                 String transmission = object.optString("transmission", "");
                                 int numberOfSeats = object.optInt("numberOfSeats", 0);
-                                double rentPrice = object.optDouble("rentPrice", 0.0);
+                                int rentPrice = object.optInt("rentPrice", 0);
                                 String color = object.optString("color", "");
                                 String model = object.optString("model", "");
                                 int topSpeed = object.optInt("topSpeed", 0);
                                 String imageUrl = object.optString("image", "http://10.0.2.2:80/test_and/images/default.png");
 
-                                Car car = new Car( description, vinNumber, fuelType, transmission,
+                                Car car = new Car(description, vinNumber, fuelType, transmission,
                                         numberOfSeats, rentPrice, color, model, topSpeed, imageUrl, year);
                                 cars.add(car);
                             }
@@ -158,11 +180,16 @@ Adapter adapter;
 
     @Override
     public void onitemclick(int position) {
-        Intent intent=new Intent(MainActivity2.this , adminActivity.class);
+        Intent intent = new Intent(MainActivity2.this, adminActivity.class);
         intent.putExtra("model", cars.get(position).getModel());
         intent.putExtra("reprice", cars.get(position).getRentPrice());
         intent.putExtra("image", cars.get(position).getImageUrl());
         startActivity(intent);
+    }
 
+    public void updateCarList(List<Car> filteredCars) {
+        cars.clear();
+        cars.addAll(filteredCars);
+        adapter.notifyDataSetChanged();
     }
 }

@@ -65,7 +65,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         speedTxt.setText(String.valueOf(car.getTopSpeed()+" km/h"));
 
         TextView priceTxt = cardView.findViewById(R.id.price_per_day);
-        priceTxt.setText(String.valueOf(car.getRentPrice()+" $/DAY")); // Set price per day correctly
+        priceTxt.setText(String.valueOf(car.getRentPrice()+"/DAY")); // Set price per day correctly
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override

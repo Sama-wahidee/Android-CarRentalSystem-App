@@ -1,10 +1,487 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Filter">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Main content activity -->
+    <include layout="@layout/activity_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/filterLayout" />
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:theme="@style/Theme.AppCompat.Dialog"
+        android:id="@+id/filterLayout"
+        tools:context=".Filter">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <TextView
+                android:id="@+id/Brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nbrand"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/font1"
+                android:textColor="@color/darkgray"/>
+            <LinearLayout
+                android:id="@+id/layoutBrandChoices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+                <CheckBox
+                    android:id="@+id/checkbox_brand1"
+                    android:layout_width="wrap_content"
+                    android:fontFamily="@font/font1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/toyota"
+                    android:layout_marginStart="20dp"
+                    android:drawableStart="@drawable/toyota"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/honda"
+                    android:fontFamily="@font/font1"
+                    android:drawableStart="@drawable/honda"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ford"
+                    android:fontFamily="@font/font1"
+                    android:drawableStart="@drawable/ford"
+                    android:layout_marginStart="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Chevrolet"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/chevrolet"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BMW"
+                    android:drawableLeft="@drawable/bmw"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand6"
+                    android:layout_width="wrap_content"
+                    android:drawableLeft="@drawable/ben"
+                    android:layout_height="wrap_content"
+                    android:text="Mercedes-Benz"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Audi"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/audi"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nissan"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/nissan"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hyundai"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/hyundai"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volkswagen"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/volkswagen"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green" />
+            <TextView
+                android:id="@+id/Fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\nFuel: \n"
+                android:padding="10dp"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:fontFamily="@font/font1"
+                android:textColor="@color/darkgray"/>
+            <LinearLayout
+                android:id="@+id/layoutFuelChoices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+                <CheckBox
+                    android:id="@+id/checkboxFuel1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gasoline"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/diesel"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxFuel2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/diesel"
+                    android:text="Diesel"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxFuel3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Electric"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/plug"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxFuel4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hybrid"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/fuel"
+                    android:textColor="@color/darkgray"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Transmission"
+                android:text="\nTransmission: \n"
+                android:textStyle="bold"
+                android:fontFamily="@font/font1"
+                android:textSize="18sp"
+                android:padding="10dp"
+                android:textColor="@color/darkgray"/>
+            <LinearLayout
+                android:id="@+id/layoutTransmissionChoices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+                <CheckBox
+                    android:id="@+id/checkboxTransmission1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Automatic"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxTransmission2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Manual"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="\nSeats: \n"
+                android:id="@+id/Seats"
+                android:padding="10dp"
+                android:fontFamily="@font/font1"
+                android:textSize="18sp"
+                android:textColor="@color/darkgray"/>
+            <LinearLayout
+                android:id="@+id/layoutSeatsChoices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+                <CheckBox
+                    android:id="@+id/checkboxSeat1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 Seats"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/carseat"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxSeat2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4 Seats"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/carseat"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxSeat3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 Seats"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/carseat"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxSeat4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7 Seats"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/carseat"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkboxSeat5"
+                    android:layout_width="wrap_content"
+                    android:drawableLeft="@drawable/carseat"
+                    android:layout_height="wrap_content"
+                    android:text="8 Seats"
+                    android:fontFamily="@font/font1"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\nColor: \n"
+                android:id="@+id/Color"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/font1"
+                android:textColor="@color/darkgray"/>
+            <LinearLayout
+                android:id="@+id/layoutColorChoices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+
+                >
+
+                <CheckBox
+                    android:id="@+id/checkbox_red"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Red"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/red"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+                <CheckBox
+                    android:id="@+id/checkbox_green"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Green"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/green"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Blue"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/blue"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" White"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/white"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+                <CheckBox
+                    android:id="@+id/checkbox_silver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Silver"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/silver"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+                <CheckBox
+                    android:id="@+id/checkbox_black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Black"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/black"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:fontFamily="@font/font1"
+                android:id="@+id/Price"
+                android:text="\nPrice per day: \n"
+                android:padding="10dp"
+                android:textSize="18sp"
+                android:textColor="@color/darkgray"/>
+
+            <LinearLayout
+                android:id="@+id/layoutPriceChoices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                    android:id="@+id/min_value_text"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="50dp"
+                        android:textSize="15dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkgray"
+                    android:text="100" />
+
+                    <TextView
+                        android:id="@+id/max_value_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/darkgray"
+                        android:textSize="15dp"
+                        android:layout_marginStart="150dp"
+                        android:text="3000" />
+                </LinearLayout>
+                <org.florescu.android.rangeseekbar.RangeSeekBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/priseseekbar"
+                    app:absoluteMinValue="3000"
+                    app:absoluteMaxValue="100"
+                    ></org.florescu.android.rangeseekbar.RangeSeekBar>
+
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/green" />
+            <Button
+                android:id="@+id/button_apply_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textStyle="bold"
+                android:textColor="@color/darkgray"
+                android:fontFamily="@font/font2"
+                android:background="@drawable/custom_button"
+                android:text="Apply Filter" />
+
+            <Button
+                android:id="@+id/button_clear_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/darkgray"
+                android:textStyle="bold"
+                android:fontFamily="@font/font2"            android:background="@drawable/custom_button"
+                android:text="Clear Form" />
+        </LinearLayout>
+
+    </ScrollView>
+    <include layout="@layout/filter_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>
