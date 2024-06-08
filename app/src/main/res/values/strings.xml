@@ -33,6 +33,7 @@
     <string name="select_picture">Select Picture</string>
     <string name="numberOfSeats"><font color="#beffdd">Number Of Seats</font></string>
     <string name="fuelType"><font color="#beffdd">Fuel Type</font></string>
+    <string name="transmissionSpinner"><font color="#beffdd">Transmission Type</font></string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>

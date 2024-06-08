@@ -39,7 +39,14 @@
         <item>4</item>
         <item>5</item>
         <item>7</item>
+        <item>Other</item>
 
-        <!-- Add more years as needed -->
     </string-array>
+
+    <string-array name="transType">
+    <item>\u0020\u0020\u0020Select</item>
+    <item>Manual</item>
+    <item>Aoutmatic</item>
+    </string-array>
+
 </resources>

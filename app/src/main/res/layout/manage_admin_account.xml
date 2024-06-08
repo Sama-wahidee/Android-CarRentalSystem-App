@@ -190,6 +190,7 @@
                 android:layout_height="wrap_content"
                 android:text="Phone:      "
                 style="@style/AddStyle"
+                android:inputType="number"
                 android:textColor="@android:color/white" />
 
             <EditText

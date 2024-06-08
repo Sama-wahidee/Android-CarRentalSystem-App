@@ -132,6 +132,7 @@
                         android:id="@+id/vinEditText"
                         style="@style/HintStyle"
                         android:layout_width="0dp"
+                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:hint="@string/vin_hint" />
@@ -317,29 +318,7 @@
                 android:padding="8dp"
                 android:visibility="gone">
 
-                <!--                &lt;!&ndash; Engine Type &ndash;&gt;-->
-                <!--                <LinearLayout-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="wrap_content"-->
-                <!--                    android:orientation="horizontal">-->
 
-                <!--                    <TextView-->
-                <!--                        android:id="@+id/engineTypeLabel"-->
-                <!--                        style="@style/ReqStyle"-->
-                <!--                        android:layout_width="wrap_content"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:text="Engine Type:"-->
-                <!--                        android:layout_marginEnd="8dp"/>-->
-
-                <!--                    <EditText-->
-                <!--                        android:id="@+id/engineTypeEditText"-->
-                <!--                        style="@style/HintStyle"-->
-                <!--                        android:layout_width="0dp"-->
-                <!--                        android:layout_height="wrap_content"-->
-                <!--                        android:layout_weight="1"-->
-                <!--                        android:hint="V6, Electric"-->
-                <!--                        android:textColorHint="#beffdd"/>-->
-                <!--                </LinearLayout>-->
 
                 <!-- Fuel Type -->
                 <LinearLayout
@@ -377,14 +356,14 @@
                         android:layout_marginEnd="8dp"
                         android:text="Transmission Type:" />
 
-                    <EditText
-                        android:id="@+id/transmissionTypeEditText"
-                        style="@style/HintStyle"
-                        android:layout_width="0dp"
+
+                    <Spinner
+                        android:id="@+id/transmissionSpinner"
+                        android:layout_width="85dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="Automatic, Manual"
-                        android:textColorHint="#beffdd" />
+                        android:background="@drawable/spinner"
+                        android:prompt="@string/transmissionSpinner" />
+
                 </LinearLayout>
 
                 <!-- Mileage -->
@@ -399,7 +378,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:text="Top Speed:" />
+                        android:text="Top Speed (MBH):" />
 
                     <EditText
                         android:id="@+id/topSpeedEditText"
@@ -407,7 +386,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="10,000"
+                        android:hint="400"
+                        android:inputType="number"
                         android:textColorHint="#beffdd" />
                 </LinearLayout>
 
