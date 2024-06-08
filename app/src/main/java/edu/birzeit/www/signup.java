@@ -9,20 +9,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class login extends AppCompatActivity {
+public class signup extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_login);
-        findViewById(R.id.subt).setOnClickListener(v -> {
-            Intent intent = new Intent(this, signup.class);
-            startActivity(intent);
-        });
+        setContentView(R.layout.activity_signup);
+
         findViewById(R.id.libt).setOnClickListener(v -> {
-                Intent intent = new Intent(this, MainActivity2.class);
-                startActivity(intent);
+            Intent intent = new Intent(this, login.class);
+            startActivity(intent);
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());

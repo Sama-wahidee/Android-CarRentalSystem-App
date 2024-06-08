@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Project"
         tools:targetApi="31">
         <activity
+            android:name=".signup"
+            android:exported="false" />
+        <activity
             android:name=".BookingDetails"
             android:exported="false" />
         <activity
@@ -28,7 +31,6 @@
         <activity
             android:name=".BottomDialogOrders"
             android:exported="false" />
-
         <activity
             android:name=".AdminOrders"
             android:exported="false" />
@@ -46,9 +48,6 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".signup"
             android:exported="false" />
         <activity
             android:name=".login"
