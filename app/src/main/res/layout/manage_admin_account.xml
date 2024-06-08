@@ -2,13 +2,13 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".manageAdminAcc_Activity"
     android:id="@+id/scroll_view"
+    style="@style/AddStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darkgray"
     android:fillViewport="true"
-    style="@style/AddStyle"
-    android:background="@color/darkgray">
+    tools:context=".manageAdminAcc_Activity">
 
     <LinearLayout
         android:id="@+id/manage_user"
@@ -27,95 +27,93 @@
 
         <TextView
             android:id="@+id/title1"
-            android:background="@drawable/manage_box"
-            android:fontFamily="@font/font1"
-            android:textColor="@color/darkgray"
-            android:textSize="20dp"
-            android:layout_gravity="center_horizontal"
-            android:textColorHighlight="@color/green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:text=" Personal Information:-  " />
+            android:background="@drawable/manage_box"
+            android:fontFamily="@font/font1"
+            android:text=" Personal Information:-  "
+            android:textColor="@color/darkgray"
+            android:textColorHighlight="@color/green"
+            android:textSize="20dp" />
 
         <!-- Username -->
         <LinearLayout
-            android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:orientation="horizontal"
             android:paddingTop="16dp">
 
             <TextView
                 android:id="@+id/username_label"
+                style="@style/AddStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Username:  "
-                android:textColor="@android:color/white"
-                style="@style/AddStyle" />
+                android:textColor="@android:color/white" />
 
             <EditText
                 android:id="@+id/username_edit_text"
+                style="@style/AddStyle"
+                android:layout_width="12dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_width="12dp"
-                android:text="username123"
-                style="@style/AddStyle"
                 android:background="@drawable/edittxt_border"
-                android:textColor="@android:color/white"
                 android:enabled="false"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="username123"
+                android:textColor="@android:color/white" />
 
             <ImageView
                 android:id="@+id/username_edit_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pen"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:src="@drawable/pen" />
         </LinearLayout>
 
         <!-- Password -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
             android:paddingTop="8dp">
 
             <TextView
                 android:id="@+id/password_label"
+                style="@style/AddStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Password:  "
-                android:textColor="@android:color/white"
-                style="@style/AddStyle"
-                />
+                android:textColor="@android:color/white" />
 
             <EditText
                 android:id="@+id/password_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-
-                android:inputType="textPassword"
-                android:text="********"
                 android:background="@drawable/edittxt_border"
-                android:textColor="@android:color/white"
                 android:enabled="false"
-                style="@style/AddStyle"
-                android:padding="8dp" />
+                android:fontFamily="@font/font1"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:text="********"
+                android:textColor="@android:color/white" />
 
             <ImageView
                 android:id="@+id/password_edit_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pen"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:src="@drawable/pen" />
         </LinearLayout>
 
         <!-- Update Email Address -->
@@ -129,16 +127,16 @@
 
         <TextView
             android:id="@+id/title2"
-            android:background="@drawable/manage_box"
-            android:fontFamily="@font/font1"
-            android:textColor="@color/darkgray"
-            android:textSize="20dp"
-            android:layout_gravity="center_horizontal"
-            android:textColorHighlight="@color/green"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text=" Contact Information:-  " />
+            android:background="@drawable/manage_box"
+            android:fontFamily="@font/font1"
+            android:text=" Contact Information:-  "
+            android:textColor="@color/darkgray"
+            android:textColorHighlight="@color/green"
+            android:textSize="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,49 +156,48 @@
             <EditText
                 android:id="@+id/email_edit_text"
                 style="@style/AddStyle"
-                android:layout_width="0dp"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:background="@drawable/edittxt_border"
                 android:enabled="false"
                 android:padding="8dp"
-                android:text="example@example.com"
+                android:text=" example@example.com"
                 android:textColor="@android:color/white" />
 
-            <ImageView
-                android:id="@+id/email_edit_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/pen" />
+            <!--            <ImageView-->
+            <!--                android:id="@+id/email_edit_icon"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:padding="8dp"-->
+            <!--                android:clickable="true"-->
+            <!--                android:focusable="true"-->
+            <!--                android:src="@drawable/pen" />-->
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:orientation="horizontal"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/phone_label"
+                style="@style/AddStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Phone:      "
-                style="@style/AddStyle"
                 android:inputType="number"
+                android:text="Phone:      "
                 android:textColor="@android:color/white" />
 
             <EditText
                 android:id="@+id/phone_edit_text"
+                style="@style/AddStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/edittxt_border"
                 android:enabled="false"
-                style="@style/AddStyle"
                 android:padding="8dp"
                 android:text="059874562"
                 android:textColor="@android:color/white" />
@@ -209,48 +206,48 @@
                 android:id="@+id/phone_edit_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pen"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:src="@drawable/pen" />
         </LinearLayout>
 
         <!-- Update Mailing Address -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="15dp"
+            android:orientation="horizontal"
             android:padding="8dp">
 
             <TextView
                 android:id="@+id/address_label"
+                style="@style/AddStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AddStyle"
                 android:text="Address:  "
                 android:textColor="@android:color/white" />
 
             <EditText
                 android:id="@+id/address_edit_text"
+                style="@style/AddStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Ramallah"
                 android:background="@drawable/edittxt_border"
-                android:textColor="@android:color/white"
                 android:enabled="false"
-                style="@style/AddStyle"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Ramallah"
+                android:textColor="@android:color/white" />
 
             <ImageView
                 android:id="@+id/address_edit_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pen"
                 android:clickable="true"
                 android:focusable="true"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:src="@drawable/pen" />
         </LinearLayout>
 
         <TextView
