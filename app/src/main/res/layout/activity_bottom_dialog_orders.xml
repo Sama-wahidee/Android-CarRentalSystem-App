@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:hint="  User Name"
-        android:drawableStart="@drawable/ic_username" />
+        android:drawableStart="@drawable/ic_user" />
 
     <EditText
         android:id="@+id/userphone"

@@ -21,6 +21,10 @@
     <string name="about_us">About Us</string>
     <string name="user_name">User Name</string>
     <string name="user_email">User Email</string>
+    <string name="nbrand">\nBrand: \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</string>
+    <string name="toyota">Toyota</string>
+    <string name="honda">Honda</string>
+    <string name="ford">Ford</string>
 
     <!--    _____________________ **SHAHD** ________________________________-->
     <string name="select_car_make">Select Car Make</string>
