@@ -16,10 +16,10 @@ public class login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        findViewById(R.id.subt).setOnClickListener(v -> {
-            Intent intent = new Intent(this, signup.class);
-            startActivity(intent);
-        });
+//        findViewById(R.id.subt).setOnClickListener(v -> {
+//            Intent intent = new Intent(this, signup.class);
+//            startActivity(intent);
+//        });
         findViewById(R.id.libt).setOnClickListener(v -> {
                 Intent intent = new Intent(this, MainActivity2.class);
                 startActivity(intent);
