@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="75dp"
             android:background="@drawable/manage_box"
             android:fontFamily="@font/font1"
             android:text=" Personal Information:-  "
