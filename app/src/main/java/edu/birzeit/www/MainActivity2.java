@@ -3,6 +3,7 @@ package edu.birzeit.www;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -43,13 +44,12 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
     private ImageButton filter;
     ImageButton refresh;
      final List<Car> cars = new ArrayList<>();
-
+Menu menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
-
         drawerLayout = findViewById(R.id.drawerlayout);
         imageButton = findViewById(R.id.buttonDrawer);
         navigationView = findViewById(R.id.navigationView);
@@ -57,7 +57,6 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
         search = findViewById(R.id.search);
         filter = findViewById(R.id.filter);
         refresh=findViewById(R.id.refresh);
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new Adapter(MainActivity2.this, cars, this);
         recyclerView.setAdapter(adapter);
@@ -66,6 +65,8 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                menu = navigationView.getMenu();
+                onCreateOptionsMenu(menu);
                 drawerLayout.open();
             }
         });
@@ -99,7 +100,21 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
                     Intent intent = new Intent(MainActivity2.this, UserReservations.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.logout) {
+                    Toast.makeText(MainActivity2.this, "Logging out...", Toast.LENGTH_SHORT).show();
+                    getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
+                            .clear()
+                            .apply();
 
+                    Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                if (itemId == R.id.home) {
+                    Toast.makeText(MainActivity2.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, MainActivity2.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }
@@ -186,6 +201,26 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
         intent.putExtra("image", cars.get(position).getImageUrl());
         startActivity(intent);
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.clear();
+
+        getMenuInflater().inflate(R.menu.drawer_items, menu);
+        MenuItem adminSettingItem = menu.findItem(R.id.AdminSettingOption);
+        adminSettingItem.setVisible(login.isAdmin); // Hide/show admin setting menu item based on isAdmin value
+
+        MenuItem addCarItem = menu.findItem(R.id.addCarOption);
+        addCarItem.setVisible(login.isAdmin); // Hide/show add car menu item based on isAdmin value
+
+        MenuItem ordersItem = menu.findItem(R.id.orders);
+        ordersItem.setVisible(login.isAdmin); // Hide/show orders menu item based on isAdmin value
+
+        MenuItem reportItem = menu.findItem(R.id.reportOption);
+        reportItem.setVisible(login.isAdmin); // Hide/show report menu item based on isAdmin value
+
+        return true;
+    }
+
 
     public void updateCarList(List<Car> filteredCars) {
         cars.clear();
