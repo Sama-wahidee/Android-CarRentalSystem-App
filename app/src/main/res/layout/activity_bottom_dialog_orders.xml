@@ -1,62 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/orderdDetailsTitle"
+        android:id="@+id/orderDetailsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Order Details"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:focusable="false"
+        android:clickable="false" />
 
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="  User Name"
-        android:drawableStart="@drawable/ic_user" />
+        android:hint="User Name"
+        android:drawableStart="@drawable/ic_user"
+        android:focusable="false"
+        android:clickable="false" />
 
     <EditText
         android:id="@+id/userphone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="  User Phone Number"
+        android:hint="User Phone Number"
         android:drawableStart="@drawable/ic_phone"
-        app:layout_constraintTop_toBottomOf="@id/username" />
+        android:focusable="false"
+        android:clickable="false" />
 
     <EditText
         android:id="@+id/rentdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="  Rental Period"
+        android:hint="Rental Period"
         android:drawableStart="@drawable/ic_calendar"
-        app:layout_constraintTop_toBottomOf="@id/userphone" />
+        android:focusable="false"
+        android:clickable="false" />
+
+    <EditText
+        android:id="@+id/rentcost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:hint="Rental Cost"
+        android:drawableStart="@drawable/ic_cost"
+        android:focusable="false"
+        android:clickable="false" />
 
     <EditText
         android:id="@+id/carname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="  Car Name"
+        android:hint="Car Name"
         android:drawableStart="@drawable/ic_car"
-        app:layout_constraintTop_toBottomOf="@id/rentdate" />
+        android:focusable="false"
+        android:clickable="false" />
 
     <EditText
         android:id="@+id/carvin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:hint="  Car VIN"
+        android:hint="Car VIN"
         android:drawableStart="@drawable/ic_vin"
-        app:layout_constraintTop_toBottomOf="@id/carname" />
+        android:focusable="false"
+        android:clickable="false" />
 
     <Button
         android:id="@+id/declineOrder"
@@ -67,7 +84,6 @@
         android:backgroundTint="#1effaa"
         android:text="DECLINE"
         android:textColor="#24282f"
-        android:textSize="16dp"
-        app:layout_constraintTop_toBottomOf="@id/carvin" />
+        android:textSize="16sp" />
 
 </LinearLayout>

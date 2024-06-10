@@ -1,15 +1,12 @@
 package edu.birzeit.www;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -21,10 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
@@ -48,10 +43,8 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
     private ImageButton search;
     private ImageButton filter;
     ImageButton refresh;
-    final List<Car> cars = new ArrayList<>();
-    Menu menu;
-    TextView textViewUsername, textViewEmail;
-
+     final List<Car> cars = new ArrayList<>();
+Menu menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,55 +56,7 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
         recyclerView = findViewById(R.id.recyclerInfo);
         search = findViewById(R.id.search);
         filter = findViewById(R.id.filter);
-        refresh = findViewById(R.id.refresh);
-//--------------------------** SHAHD EDIT **-----------------------------
-        // to show name & email on tool bar..
-        textViewUsername = findViewById(R.id.textViewUsername);
-        textViewEmail = findViewById(R.id.textViewEmail);
-
-
-//
-        NavigationView navigationView = findViewById(R.id.navigationView);
-        View headerView = navigationView.getHeaderView(0);  // This gets the header view from the NavigationView
-
-        TextView textViewUsername = headerView.findViewById(R.id.textViewUsername);
-        TextView textViewEmail = headerView.findViewById(R.id.textViewEmail);
-
-        // Access SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        String savedEmail = sharedPreferences.getString("email", "example@example.com");  // Use default value if not found
-
-        textViewEmail.setText(savedEmail);
-
-
-        // Make HTTP request to fetch user data
-        String getUserUrl = "http://10.0.2.2:80/project_android/get_users.php?email=" + savedEmail;
-        RequestQueue queue = Volley.newRequestQueue(this);
-
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    if (response.length() > 0) {
-                        JSONObject user = response.getJSONObject(0); //  there's only one user returned
-                        String fetchedUsername = user.getString("UserName");
-
-                        // Autofill EditTexts
-                        textViewUsername.setText(fetchedUsername);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-        }, error -> {
-            // Handle error
-            Toast.makeText(MainActivity2.this, "Failed to Fetch", Toast.LENGTH_SHORT).show();
-        });
-        queue.add(jsonArrayRequest);
-//--------------------------** SHAHD EDIT **-----------------------------
-
-        //-----shahd end
+        refresh=findViewById(R.id.refresh);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new Adapter(MainActivity2.this, cars, this);
         recyclerView.setAdapter(adapter);
@@ -160,7 +105,7 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
                     Intent intent = new Intent(MainActivity2.this, ContacUsActivity.class);
                     startActivity(intent);
                 }
-
+                
                 if (itemId == R.id.logout) {
                     Toast.makeText(MainActivity2.this, "Logging out...", Toast.LENGTH_SHORT).show();
                     getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
@@ -179,6 +124,7 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
                 drawerLayout.close();
                 return false;
             }
+
 
 
         });
@@ -204,9 +150,9 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loadCars(adapter);
-            }
-        });
+                    loadCars(adapter);
+                }
+            });
     }
 
     private void loadCars(final Adapter adapter) {
@@ -222,9 +168,9 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
                                 JSONObject object = array.getJSONObject(i);
                                 int year = object.optInt("Year", 0);
                                 String description = object.optString("description", "No description available");
-                                String vinNumber = object.optString("VIN_number", "");
+                                String vinNumber = object.optString("vinNumber", "");
                                 String fuelType = object.optString("fuelType", "");
-                                String transmission = object.optString("Transmission", "");
+                                String transmission = object.optString("transmission", "");
                                 int numberOfSeats = object.optInt("numberOfSeats", 0);
                                 int rentPrice = object.optInt("rentPrice", 0);
                                 String color = object.optString("color", "");
@@ -258,14 +204,19 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
 
     @Override
     public void onitemclick(int position) {
-
+        Intent intent = new Intent(MainActivity2.this, adminActivity.class);
+        intent.putExtra("model", cars.get(position).getModel());
+        intent.putExtra("reprice", cars.get(position).getRentPrice());
+        intent.putExtra("image", cars.get(position).getImageUrl());
+        startActivity(intent);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();
 
         getMenuInflater().inflate(R.menu.drawer_items, menu);
+        MenuItem adminSettingItem = menu.findItem(R.id.AdminSettingOption);
+        adminSettingItem.setVisible(login.isAdmin); // Hide/show admin setting menu item based on isAdmin value
 
         MenuItem addCarItem = menu.findItem(R.id.addCarOption);
         addCarItem.setVisible(login.isAdmin); // Hide/show add car menu item based on isAdmin value

@@ -30,6 +30,7 @@ import java.util.List;
 
 public class login extends AppCompatActivity {
     private static final String GET_USERS_URL = "http://10.0.2.2:80/project_android/getAllusers.php";
+    private static final String getUsers_URL = "http://192.168.56.1/project_android/get_users.php";
     public static List<User> users = new ArrayList<>();
     private EditText emailEditText;
     private EditText passwordEditText;
@@ -130,6 +131,7 @@ public class login extends AppCompatActivity {
     }
 
     private void handleLogin() {
+        Log.d("LoginActivity", "Current user: " + (currentUser != null ? currentUser.getUsername() : "null"));
         String enteredEmail = emailEditText.getText().toString().trim();
         String enteredPassword = passwordEditText.getText().toString().trim();
 
@@ -171,10 +173,13 @@ public class login extends AppCompatActivity {
             editor.putString("email", enteredEmail);
             editor.apply();
 
+            Log.d("LoginActivity", "Email saved to SharedPreferences: " + enteredEmail);
             if (isAdmin) {
                 Toast.makeText(this, "Admin Login Successful", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "User Login Successful", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, BookingDetails.class);
+                startActivity(intent);
             }
 
             Intent intent = new Intent(this, MainActivity2.class);

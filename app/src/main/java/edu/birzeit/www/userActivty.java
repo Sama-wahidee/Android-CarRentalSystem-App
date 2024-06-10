@@ -156,13 +156,21 @@ public class userActivty extends AppCompatActivity {
         initializeCardList(recyclerView);
         bookBtn.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
                 Intent intent = new Intent(userActivty.this, BookingDetails.class);
+
+                // Pass VIN_number and rentPrice to the intent
+                intent.putExtra("vinNumber", VIN_number);
+                intent.putExtra("rentPrice", rentPrice);
+
                 startActivity(intent);
             }
-        });
+            });
+
 
     }
+
     public void backbtn(View view){
         Intent intent = new Intent(userActivty.this, MainActivity2.class );
         startActivity(intent);

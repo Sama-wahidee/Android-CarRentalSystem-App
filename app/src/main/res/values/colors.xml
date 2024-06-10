@@ -13,5 +13,11 @@
     <!--    _____________________ **SHAHD** ________________________________-->
 
 
+        <color name="colorPrimary">#1effaa</color>
+        <color name="colorPrimaryDark">#1effaa</color>
+        <color name="colorAccent">#1effaa</color>
+        <!-- Define other colors here -->
+
+
 
 </resources>

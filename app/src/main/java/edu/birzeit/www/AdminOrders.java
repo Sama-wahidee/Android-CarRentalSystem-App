@@ -1,150 +1,139 @@
 package edu.birzeit.www;
 
-
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.graphics.Insets;
-import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminOrders extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private ImageButton imageButton;
-    private Menu menu;
+
+    private static final String TAG = "AdminOrders";
+    private static final String FETCH_ORDERS_URL = "http://192.168.56.1/project_android/admin_orders.php";
+    private static final String FETCH_ORDER_DETAILS_URL = "http://192.168.56.1/project_android/order_details.php?order_id=";
+    private ListView ordersListView;
+    private ArrayAdapter<String> ordersAdapter;
+    private List<String> orderTitles = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_mainaao);
-        drawerLayout = findViewById(R.id.drawerlayout);
-        navigationView = findViewById(R.id.navigationView);
-        imageButton = findViewById(R.id.buttonDrawer);
+        setContentView(R.layout.activity_admin_orders);
 
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        ordersListView = findViewById(R.id.ordersListView);
+        ordersAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, orderTitles);
+        ordersListView.setAdapter(ordersAdapter);
+
+        fetchOrders();
+
+        ordersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                menu = navigationView.getMenu();
-                onCreateOptionsMenu(menu);
-                drawerLayout.openDrawer(GravityCompat.START);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String orderId = orderTitles.get(position).replace("Order : ", "");
+                fetchOrderDetails(orderId);
             }
         });
-
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                int itemId = menuItem.getItemId();
-                if (itemId == R.id.AdminSettingOption) {
-                    Toast.makeText(AdminOrders.this, "Account Setting Option", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminOrders.this, manageAdminAcc_Activity.class);
-                    startActivity(intent);
-                }
-                if (itemId == R.id.addCarOption) {
-                    Toast.makeText(AdminOrders.this, "Add Car Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminOrders.this, AddCarActivity.class);
-                    startActivity(intent);
-                }
-                if (itemId == R.id.reportOption) {
-                    Toast.makeText(AdminOrders.this, "Report Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminOrders.this, ReportActivity.class);
-                    startActivity(intent);
-                }
-                if (itemId == R.id.orders) {
-                    Toast.makeText(AdminOrders.this, "Admin Orders Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminOrders.this, AdminOrders.class);
-                    startActivity(intent);
-                }
-                if (itemId == R.id.reservations) {
-                    Toast.makeText(AdminOrders.this, "Reservations Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminOrders.this, UserReservations.class);
-                    startActivity(intent);
-                }
-                if (itemId == R.id.ContactUsOption) {
-                    Toast.makeText(AdminOrders.this, "Contact Us Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminOrders.this, ContacUsActivity.class);
-                    startActivity(intent);
-                }
-
-                if (itemId == R.id.logout) {
-                    Toast.makeText(AdminOrders.this, "Logging out...", Toast.LENGTH_SHORT).show();
-                    getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
-                            .clear()
-                            .apply();
-
-                    Intent intent = new Intent(AdminOrders.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-                if (itemId == R.id.home) {
-                    Toast.makeText(AdminOrders.this, "Home Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminOrders.this, MainActivity2.class);
-                    startActivity(intent);
-                }
-                drawerLayout.close();
-                return false;
-            }
-
-
-        });
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-
-        CardView cardView = findViewById(R.id.my_card_view);
-        cardView.setOnClickListener(view -> showBottomSheet());
     }
 
-    private void showBottomSheet() {
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        View bottomSheetView = getLayoutInflater().inflate(R.layout.activity_bottom_dialog_orders, null);
+    private void fetchOrders() {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        // Set the height of the bottom sheet
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                (int) (getResources().getDisplayMetrics().heightPixels * 0.7)  // 70% of screen height
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                FETCH_ORDERS_URL,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        orderTitles.clear();
+                        for (int i = 0; i < response.length(); i++) {
+                            try {
+                                String orderId = response.getString(i);
+                                orderTitles.add("Order : " + orderId);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        ordersAdapter.notifyDataSetChanged();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AdminOrders.this, "Failed to fetch orders", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error: " + error.getMessage());
+                    }
+                }
         );
-        bottomSheetView.setLayoutParams(params);
+
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    private void fetchOrderDetails(String orderId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = FETCH_ORDER_DETAILS_URL + orderId;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        showOrderDetailsBottomSheet(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(AdminOrders.this, "Failed to fetch order details", Toast.LENGTH_SHORT).show();
+                        Log.e(TAG, "Error: " + error.getMessage());
+                    }
+                }
+        );
+
+        requestQueue.add(jsonObjectRequest);
+    }
+
+    private void showOrderDetailsBottomSheet(JSONObject orderDetails) {
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        View bottomSheetView = LayoutInflater.from(this).inflate(R.layout.activity_bottom_dialog_orders, null);
+
+        try {
+            ((EditText) bottomSheetView.findViewById(R.id.username)).setText(orderDetails.getString("UserName"));
+            ((EditText) bottomSheetView.findViewById(R.id.userphone)).setText(orderDetails.getString("phone"));
+            ((EditText) bottomSheetView.findViewById(R.id.rentdate)).setText(orderDetails.getString("startDate") + " - " + orderDetails.getString("endDate"));
+            ((EditText) bottomSheetView.findViewById(R.id.rentcost)).setText(orderDetails.getString("rent_cost"));
+
+            ((EditText) bottomSheetView.findViewById(R.id.carvin)).setText(orderDetails.getString("VIN_number"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         bottomSheetDialog.setContentView(bottomSheetView);
         bottomSheetDialog.show();
-    }
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.clear();
-
-        getMenuInflater().inflate(R.menu.drawer_items, menu);
-
-        MenuItem addCarItem = menu.findItem(R.id.addCarOption);
-        addCarItem.setVisible(login.isAdmin); // Hide/show add car menu item based on isAdmin value
-
-        MenuItem ordersItem = menu.findItem(R.id.orders);
-        ordersItem.setVisible(login.isAdmin); // Hide/show orders menu item based on isAdmin value
-
-        MenuItem reportItem = menu.findItem(R.id.reportOption);
-        reportItem.setVisible(login.isAdmin); // Hide/show report menu item based on isAdmin value
-
-        MenuItem reverItem = menu.findItem(R.id.reservations);
-        reportItem.setVisible(login.isAdmin);
-
-        return true;
     }
 }

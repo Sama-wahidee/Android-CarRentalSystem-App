@@ -58,4 +58,17 @@ dependencies {
     implementation ("com.google.android.material:material:1.4.0")
     implementation ("org.florescu.android.rangeseekbar:rangeseekbar-library:0.3.0")
 
+
+
+//        implementation ("com.google.android.material:material:1.3.0")
+
+
+
+
+
+
+
+
+
+
 }
