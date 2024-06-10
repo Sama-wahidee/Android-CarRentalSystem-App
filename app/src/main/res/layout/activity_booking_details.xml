@@ -67,16 +67,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email" />
+    <EditText
+        android:id="@+id/vin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape"
+        android:hint="ٌCar VIN"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phone" />
 
     <ImageView
         android:id="@+id/calendarimage"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/calendar"
+        android:src="@drawable/calendar2"
         app:layout_constraintBottom_toBottomOf="@+id/rentalperiod"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone"
+        app:layout_constraintTop_toBottomOf="@id/vin"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
@@ -94,7 +110,23 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/calendarimage"
-        app:layout_constraintTop_toBottomOf="@id/phone" />
+        app:layout_constraintTop_toBottomOf="@id/vin" />
+    <EditText
+        android:id="@+id/rentcost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape"
+        android:hint="ٌRental Cost"
+        android:padding="10dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/rentalperiod" />
 
     <Button
         android:id="@+id/bookBtn"
@@ -105,7 +137,7 @@
         android:text="BOOK NOW"
         android:textColor="#24282f"
         android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/rentalperiod"
+        app:layout_constraintTop_toBottomOf="@id/rentcost"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

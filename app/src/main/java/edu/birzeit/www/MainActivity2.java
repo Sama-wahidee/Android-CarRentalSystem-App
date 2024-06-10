@@ -43,7 +43,7 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
     private ImageButton search;
     private ImageButton filter;
     ImageButton refresh;
-     final List<Car> cars = new ArrayList<>();
+    final List<Car> cars = new ArrayList<>();
 Menu menu;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,9 +150,9 @@ Menu menu;
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    loadCars(adapter);
-                }
-            });
+                loadCars(adapter);
+            }
+        });
     }
 
     private void loadCars(final Adapter adapter) {
@@ -235,5 +235,5 @@ Menu menu;
         cars.clear();
         cars.addAll(filteredCars);
         adapter.notifyDataSetChanged();
-    }
+}
 }
