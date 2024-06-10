@@ -215,8 +215,6 @@ Menu menu;
         menu.clear();
 
         getMenuInflater().inflate(R.menu.drawer_items, menu);
-        MenuItem adminSettingItem = menu.findItem(R.id.AdminSettingOption);
-        adminSettingItem.setVisible(login.isAdmin); // Hide/show admin setting menu item based on isAdmin value
 
         MenuItem addCarItem = menu.findItem(R.id.addCarOption);
         addCarItem.setVisible(login.isAdmin); // Hide/show add car menu item based on isAdmin value
