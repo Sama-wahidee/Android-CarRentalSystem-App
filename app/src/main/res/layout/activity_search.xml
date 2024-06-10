@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:textStyle="bold"
+                android:textSize="25dp"
                 android:textColor="@color/darkgray"
                 android:fontFamily="@font/font2"
                 android:background="@drawable/custom_button"

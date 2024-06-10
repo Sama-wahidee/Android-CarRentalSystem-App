@@ -10,11 +10,10 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="431dp"
-        android:layout_height="500dp"
-        android:layout_marginTop="309dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="310dp"
         android:background="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -51,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/font1"
         android:text="Email"
         android:textColor="@color/black"
@@ -64,7 +63,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="23dp"
         android:background="@drawable/textedit"
         android:ems="10"
@@ -137,8 +136,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="179dp"
-        android:layout_height="319dp"
+        android:layout_width="177dp"
+        android:layout_height="311dp"
         android:layout_marginTop="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
