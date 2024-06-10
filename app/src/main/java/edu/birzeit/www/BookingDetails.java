@@ -33,11 +33,13 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class BookingDetails extends AppCompatActivity {
     private EditText userNameEditText, phoneEditText, emailEditText, rentCostEditText, rentalperiod, VINEditText;
     private Button bookCarButton;
     private ImageView calendarimage;
+    EditText rentPriceTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,14 +105,14 @@ public class BookingDetails extends AppCompatActivity {
         });
 
         String vinNumber = getIntent().getStringExtra("vinNumber");
-        double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
+       double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
 
         // Use the values as needed
         // For example, set them to TextViews
         EditText vinNumberTextView = findViewById(R.id.vin);
         vinNumberTextView.setText("VIN Number: " + vinNumber);
 
-        EditText rentPriceTextView = findViewById(R.id.rentcost);
+         rentPriceTextView = findViewById(R.id.rentcost);
         rentPriceTextView.setText("Rent Price: " + rentPrice);
 
 
@@ -187,25 +189,60 @@ public class BookingDetails extends AppCompatActivity {
 
         // Setting up the listener for the positive button click
         datePicker.addOnPositiveButtonClickListener(selection -> {
-            // Retrieving the selected start and end dates
-            Long startDateV = selection.first;
-            Long endDateV = selection.second;
+            try {
+                // Retrieving the selected start and end dates
+                Long startDateV = selection.first;
+                Long endDateV = selection.second;
 
-            // Formatting the selected dates as strings
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-             startDate = sdf.format(new Date(startDateV));
-             endDate = sdf.format(new Date(endDateV));
+                if (startDateV != null && endDateV != null) {
+                    // Formatting the selected dates as strings
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    String startDate = sdf.format(new Date(startDateV));
+                    String endDate = sdf.format(new Date(endDateV));
 
-            // Creating the date range string
-            String selectedDateRange = startDate + " - " + endDate;
+                    // Creating the date range string
+                    String selectedDateRange = startDate + " - " + endDate;
 
-            // Displaying the selected date range in the TextView
-            rentalperiod.setText(selectedDateRange);
+                    // Displaying the selected date range in the TextView
+                    rentalperiod.setText(selectedDateRange);
+
+                    // Calculate the number of days between the selected dates
+                    long diffInMillis = endDateV - startDateV;
+                    long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
+
+                    // Parse the rent price from the rentPriceTextView
+                    String rentPriceText = rentPriceTextView.getText().toString().trim();
+                    Log.d("DatePickerdialog", "Rent Price Text: " + rentPriceText);
+
+                    // Ensure the rent price text is a valid number
+                    if (rentPriceText.startsWith("Rent Price: ")) {
+                        rentPriceText = rentPriceText.replace("Rent Price: ", "").trim();
+                    }
+
+                    double rentPrice = Double.parseDouble(rentPriceText);
+
+                    // Calculate the total rent price
+                    double totalRentPrice = diffInDays * rentPrice;
+
+                    // Set the total rent price in the totalRentTextView
+                    rentPriceTextView.setText("Total Rent Price: " + totalRentPrice);
+                } else {
+                    Toast.makeText(this, "Please select a valid date range", Toast.LENGTH_SHORT).show();
+                }
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Error parsing the rent price: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("DatePickerdialog", "Error parsing rent price", e);
+            } catch (Exception e) {
+                Toast.makeText(this, "An unexpected error occurred: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e("DatePickerdialog", "Unexpected error", e);
+            }
         });
 
         // Showing the date picker dialog
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
     }
+
+
 
 
 
