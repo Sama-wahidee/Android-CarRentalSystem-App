@@ -53,7 +53,7 @@ Menu menu;
         drawerLayout = findViewById(R.id.drawerlayout);
         imageButton = findViewById(R.id.buttonDrawer);
         navigationView = findViewById(R.id.navigationView);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerInfo);
         search = findViewById(R.id.search);
         filter = findViewById(R.id.filter);
         refresh=findViewById(R.id.refresh);

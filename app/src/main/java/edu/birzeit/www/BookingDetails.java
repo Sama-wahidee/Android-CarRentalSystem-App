@@ -102,6 +102,19 @@ public class BookingDetails extends AppCompatActivity {
             }
         });
 
+        String vinNumber = getIntent().getStringExtra("vinNumber");
+        double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
+
+        // Use the values as needed
+        // For example, set them to TextViews
+        EditText vinNumberTextView = findViewById(R.id.vin);
+        vinNumberTextView.setText("VIN Number: " + vinNumber);
+
+        EditText rentPriceTextView = findViewById(R.id.rentcost);
+        rentPriceTextView.setText("Rent Price: " + rentPrice);
+
+
+
         // Handle calendar image click
         calendarimage.setOnClickListener(view -> DatePickerdialog());
     }
