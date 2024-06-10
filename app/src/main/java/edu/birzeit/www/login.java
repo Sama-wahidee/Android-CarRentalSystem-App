@@ -44,26 +44,24 @@ public class login extends AppCompatActivity {
         emailEditText = findViewById(R.id.editTextEmail);
         passwordEditText = findViewById(R.id.editTextTextPassword);
 
-        // Check login state
-        if (getSharedPreferences("loginPrefs", MODE_PRIVATE).getBoolean("isLoggedIn", false)) {
+        SharedPreferences prefs = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        boolean isLoggedIn = prefs.getBoolean("isLoggedIn", false);
+        if (isLoggedIn) {
+            isAdmin = prefs.getBoolean("isAdmin", false);
+            String userEmail = prefs.getString("userEmail", null);
+            if (userEmail != null) {
+                for (User user : users) {
+                    if (user.getEmail().equalsIgnoreCase(userEmail)) {
+                        currentUser = user;
+                        break;
+                    }
+                }
+            }
             Intent intent = new Intent(this, MainActivity2.class);
             startActivity(intent);
             finish(); // Close the login activity
             return;
         }
-
-
-
-
-
-
-        //Shahd Update starts
-        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("email", emailEditText.getText().toString());
-        editor.apply();
-        //Shahd Update ends
-
 
         // Fetch user data
         loadUsers();
@@ -82,6 +80,7 @@ public class login extends AppCompatActivity {
         // Apply window insets
         applyWindowInsets();
     }
+
 
 
     private void applyWindowInsets() {
@@ -159,10 +158,11 @@ public class login extends AppCompatActivity {
             isAdmin = enteredEmail.endsWith("@a.rent");
             currentUser = foundUser;
 
-            // Save login state
+            // Save login state and admin status
             getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
                     .putBoolean("isLoggedIn", true)
                     .putString("userEmail", enteredEmail)
+                    .putBoolean("isAdmin", isAdmin)
                     .apply();
 
             // Save email to user_prefs
@@ -181,6 +181,7 @@ public class login extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
 
     ///
     @Override
