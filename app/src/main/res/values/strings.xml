@@ -52,5 +52,14 @@
     <string name="close">Close</string>
 ]    <!--    _____________________ **SHAHD** ________________________________-->
 
+    <string-array name="transmission_array">
+        <item>Automatic</item>
+        <item>Gear</item>
+    </string-array>
+    <string-array name="fuel_type_array">
+        <item>Diesel</item>
+        <item>Electric</item>
+        <item>Gasoline</item>
+    </string-array>
 
 </resources>

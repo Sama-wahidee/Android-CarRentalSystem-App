@@ -31,7 +31,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private final recyclerinterface recyclerinterface;
     private List<Car> cars;
     private Context context;
-    public boolean isAdmin=false;
+    public boolean isAdmin=true;
 
     public Adapter(   Context context,List<Car> cars , recyclerinterface recyclerinterface) {
         this.cars = cars;
@@ -62,7 +62,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         seatTxt.setText(String.valueOf(car.getNumberOfSeats()+" PASSENGERS"));
 
         TextView speedTxt = cardView.findViewById(R.id.speed);
-        speedTxt.setText(String.valueOf(car.getTopSpeed()+" km/h"));
+        speedTxt.setText(car.getTopSpeed()+" km/h");
 
         TextView priceTxt = cardView.findViewById(R.id.price_per_day);
         priceTxt.setText(String.valueOf(car.getRentPrice()+"/DAY")); // Set price per day correctly
@@ -83,6 +83,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 intent.putExtra("rentPrice", car.getRentPrice());
                 intent.putExtra("year", car.getYear());
                 intent.putExtra("description", car.getDescription());
+                intent.putExtra("vin", car.getVinNumber());
+                intent.putExtra("color", car.getColor());
+                intent.putExtra("fuel_type", car.getFuelType());
+                intent.putExtra("transmission", car.getTransmission());
                 context.startActivity(intent);
             }
         });
