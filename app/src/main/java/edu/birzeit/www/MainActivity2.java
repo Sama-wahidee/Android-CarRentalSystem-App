@@ -1,12 +1,15 @@
 package edu.birzeit.www;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,8 +21,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
@@ -43,8 +48,10 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
     private ImageButton search;
     private ImageButton filter;
     ImageButton refresh;
-     final List<Car> cars = new ArrayList<>();
-Menu menu;
+    final List<Car> cars = new ArrayList<>();
+    Menu menu;
+    TextView textViewUsername, textViewEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +63,55 @@ Menu menu;
         recyclerView = findViewById(R.id.recyclerInfo);
         search = findViewById(R.id.search);
         filter = findViewById(R.id.filter);
-        refresh=findViewById(R.id.refresh);
+        refresh = findViewById(R.id.refresh);
+//--------------------------** SHAHD EDIT **-----------------------------
+        // to show name & email on tool bar..
+        textViewUsername = findViewById(R.id.textViewUsername);
+        textViewEmail = findViewById(R.id.textViewEmail);
+
+
+//
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        View headerView = navigationView.getHeaderView(0);  // This gets the header view from the NavigationView
+
+        TextView textViewUsername = headerView.findViewById(R.id.textViewUsername);
+        TextView textViewEmail = headerView.findViewById(R.id.textViewEmail);
+
+        // Access SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString("email", "example@example.com");  // Use default value if not found
+
+        textViewEmail.setText(savedEmail);
+
+
+        // Make HTTP request to fetch user data
+        String getUserUrl = "http://10.0.2.2:80/project_android/get_users.php?email=" + savedEmail;
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    if (response.length() > 0) {
+                        JSONObject user = response.getJSONObject(0); //  there's only one user returned
+                        String fetchedUsername = user.getString("UserName");
+
+                        // Autofill EditTexts
+                        textViewUsername.setText(fetchedUsername);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }, error -> {
+            // Handle error
+            Toast.makeText(MainActivity2.this, "Failed to Fetch", Toast.LENGTH_SHORT).show();
+        });
+        queue.add(jsonArrayRequest);
+//--------------------------** SHAHD EDIT **-----------------------------
+
+        //-----shahd end
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new Adapter(MainActivity2.this, cars, this);
         recyclerView.setAdapter(adapter);
@@ -105,7 +160,7 @@ Menu menu;
                     Intent intent = new Intent(MainActivity2.this, ContacUsActivity.class);
                     startActivity(intent);
                 }
-                
+
                 if (itemId == R.id.logout) {
                     Toast.makeText(MainActivity2.this, "Logging out...", Toast.LENGTH_SHORT).show();
                     getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
@@ -124,7 +179,6 @@ Menu menu;
                 drawerLayout.close();
                 return false;
             }
-
 
 
         });
@@ -150,9 +204,9 @@ Menu menu;
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    loadCars(adapter);
-                }
-            });
+                loadCars(adapter);
+            }
+        });
     }
 
     private void loadCars(final Adapter adapter) {
@@ -206,6 +260,7 @@ Menu menu;
     public void onitemclick(int position) {
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();

@@ -9,11 +9,13 @@ import android.provider.OpenableColumns;
 import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 
 import com.android.volley.Request;
@@ -31,6 +34,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,9 +53,12 @@ public class AddCarActivity extends AppCompatActivity {
     private Spinner carModelSpinner, yearSpinner, fuelTypeSpinner, numberOfSeatsSpinner, transmissionSpinner;
     private ImageView selectImageButton;
     private static final int PICK_IMAGE_REQUEST = 1;
+    private NavigationView navigationView;
+    private DrawerLayout drawerLayout;
 
     private ArrayAdapter<String> carModelAdapter;
-
+    private ImageButton imageButton;
+    Menu menu;
     private ArrayAdapter<String> seatsAdapter;
 
     private static final String add_URL = "http://10.0.2.2:80/project_android/AddNewCar.php";
@@ -85,6 +92,10 @@ public class AddCarActivity extends AppCompatActivity {
         RentalPriceEditText = findViewById(R.id.RentalPriceEditText);
         colorEditText = findViewById(R.id.colorEditText);
         topSpeedEditText = findViewById(R.id.topSpeedEditText);
+
+        navigationView = findViewById(R.id.navigationView);
+        drawerLayout = findViewById(R.id.drawerlayout);
+
         //--
         ArrayList<String> carModels = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.car_models)));
         carModelAdapter = new ArrayAdapter<>(this, R.layout.spinner_layout, carModels);
@@ -106,6 +117,16 @@ public class AddCarActivity extends AppCompatActivity {
 
         ArrayAdapter<CharSequence> transmissionAdapter = ArrayAdapter.createFromResource(this, R.array.transType, R.layout.spinner_layout);
         transmissionAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+//        imageButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                menu = navigationView.getMenu();
+//                onCreateOptionsMenu(menu);
+//                drawerLayout.open();
+//            }
+//        });
+
 
         carModelSpinner.setAdapter(carModelAdapter);
         transmissionSpinner.setAdapter(transmissionAdapter);

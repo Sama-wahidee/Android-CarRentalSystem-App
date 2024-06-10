@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     tools:openDrawer="start"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity2">
+    tools:context=".MainActivity2"
+
+    >
     <include
         layout="@layout/activity_main_content"/>
 
