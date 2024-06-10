@@ -20,7 +20,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 public class ReportActivity extends AppCompatActivity {
-    private TextView totalCarsTxt, rentedCarsTxt, availableCarsTxt,customerTxt;
+    private TextView totalCarsTxt, repairCarTxt, rentedCarsTxt, availableCarsTxt,customerTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class ReportActivity extends AppCompatActivity {
         rentedCarsTxt = findViewById(R.id.rentedCarsTxt);
         availableCarsTxt = findViewById(R.id.AvilabileCarsTxt);
         customerTxt = findViewById(R.id.customerTxt);
+        repairCarTxt = findViewById(R.id.repairCarTxt);
 
         fetchData();
     }
@@ -44,12 +45,13 @@ public class ReportActivity extends AppCompatActivity {
                         int rentedCars = response.getInt("rentedCars");
                         int availableCars = response.getInt("availableCars");
                         int gmailUsers = response.getInt("gmailUsers");
+                        int repairCars = response.getInt("under_maintenance");
 
                         totalCarsTxt.setText(String.valueOf(totalCars));
                         rentedCarsTxt.setText(String.valueOf(rentedCars));
                         availableCarsTxt.setText(String.valueOf(availableCars));
                         customerTxt.setText(String.valueOf(gmailUsers));
-
+                        repairCarTxt.setText(String.valueOf(repairCars));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
