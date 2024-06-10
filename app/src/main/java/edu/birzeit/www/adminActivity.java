@@ -60,6 +60,16 @@ public class adminActivity extends AppCompatActivity {
     EditText modelTxt;
     private static final int PICK_IMAGE_REQUEST = 1;
     private Uri selectedImageUri;
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+     String updatedVin ;
+    String updatedFuelType ;
+    String updatedTransmission ;
+     String updatedNumberOfSeats ;
+    String updatedRentPrice ;
+     String updatedColor ;
+    String updatedYear ;
+     String updatedTopSpeed ;
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +112,7 @@ public class adminActivity extends AppCompatActivity {
         ImageView selectImageButton = findViewById(R.id.selectImageButton);
 
         selectImageButton.setOnClickListener(v -> selectImage());
+
     }
 
     public void backbtn(View view) {
@@ -114,7 +125,7 @@ public class adminActivity extends AppCompatActivity {
     }
 
     public void updatebtn(View view) {
-        saveDataToSharedPreferences();
+
         LinearLayout buttonLayout = findViewById(R.id.buttonLayout);
         LinearLayout photolayout = findViewById(R.id.photolayout);
         modelTxt.setFocusable(true);
@@ -144,24 +155,7 @@ public class adminActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void saveDataToSharedPreferences() {
-        SharedPreferences sharedPreferences = getSharedPreferences("CarData", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString("model", model);
-        editor.putString("imageUrl", imageUrl);
-        editor.putInt("numberOfSeats", numberOfSeats);
-        editor.putInt("topSpeed", topSpeed);
-        editor.putString("description", description);
-        editor.putString("transmission", transmission);
-        editor.putString("VIN_number", VIN_number);
-        editor.putString("fuel_type", fuel_type);
-        editor.putString("color", color);
-        editor.putString("year", year);
-        editor.putFloat("rentPrice", (float) rentPrice);
-
-        editor.apply();
-    }
 
     private void showConfirmationDialog(View view) {
         new AlertDialog.Builder(this)
@@ -222,16 +216,32 @@ public class adminActivity extends AppCompatActivity {
     }
 
     private void updateCarDetails() {
+        List<CardModel> updatedCardList = adapter.getUpdatedCardList();
         final String updatedModel = modelTxt.getText().toString();
         final String updatedDescription = desText.getText().toString();
-        final String updatedVin = VIN_number;
-        final String updatedFuelType = fuel_type;
-        final String updatedTransmission = transmission;
-        final String updatedNumberOfSeats = String.valueOf(numberOfSeats);
-        final String updatedRentPrice = String.valueOf(rentPrice);
-        final String updatedColor = color;
-        final String updatedYear = year;
-        final String updatedTopSpeed = String.valueOf(topSpeed);
+        for (CardModel cardModel : updatedCardList) {
+            String value = cardModel.getValue();
+            int imageId = cardModel.getImageResId(); // Get the imageId
+            if (imageId == R.drawable.fuel_type) {
+                updatedFuelType = value;
+            } else if (imageId == R.drawable.year) {
+                updatedYear = value;
+            } else if (imageId == R.drawable.capacity) {
+                updatedNumberOfSeats = value;
+            } else if (imageId == R.drawable.speed) {
+                updatedTopSpeed = value;
+            } else if (imageId == R.drawable.gear) {
+                updatedTransmission = value;
+            } else if (imageId == R.drawable.numcar) {
+                updatedVin = value;
+            } else if (imageId == R.drawable.colour) {
+                updatedColor = value;
+            } else if (imageId == R.drawable.price) {
+                updatedRentPrice = value;
+            }
+            // Add more else-if blocks for other image IDs if needed
+        }
+
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, UPDATE_URL,

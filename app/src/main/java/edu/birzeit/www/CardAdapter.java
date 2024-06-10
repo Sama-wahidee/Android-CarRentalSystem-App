@@ -1,5 +1,6 @@
 package edu.birzeit.www;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -39,28 +40,28 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CardViewHolder holder, @SuppressLint("RecyclerView") int position) {
         CardModel card = cardList.get(position);
         CardView cardView = holder.cardView;
         holder.imageView.setImageResource(card.getImageResId());
         holder.textViewD.setText(card.getTitle());
         holder.textViewV.setText(card.getValue());
 
-      if(isClickable){
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if ("Transmission".equals(card.getTitle())) {
-                    showTransmissionDialog(holder, position);
-                } else if ("Fuel Type".equals(card.getTitle())) {
-                    showFuelTypeDialog(holder, position);
-                } else {
-                    // For other titles, show a generic dialog with title and input field
-                    showGenericInputDialog(holder, position);
+        if(isClickable){
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if ("Transmission".equals(card.getTitle())) {
+                        showTransmissionDialog(holder, position);
+                    } else if ("Fuel Type".equals(card.getTitle())) {
+                        showFuelTypeDialog(holder, position);
+                    } else {
+                        // For other titles, show a generic dialog with title and input field
+                        showGenericInputDialog(holder, position);
+                    }
                 }
-            }
-        });
-    }}
+            });
+        }}
 
     @Override
     public int getItemCount() {
@@ -167,5 +168,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+    public List<CardModel> getUpdatedCardList() {
+        return cardList;
     }
 }
