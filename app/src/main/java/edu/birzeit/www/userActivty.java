@@ -37,6 +37,8 @@ public class userActivty extends AppCompatActivity {
     String transmision;
     String fuel_type;
     String color;
+    String transmission;
+    private CardAdapter adapter;
 
     List<CardModel> cardList = new ArrayList<>();
 
@@ -53,6 +55,20 @@ public class userActivty extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigationView);
         imageButton = findViewById(R.id.buttonDrawer);
+        TextView tst=findViewById(R.id.testtxt);
+        RecyclerView recyclerView=findViewById(R.id.recyclerInfo);
+
+        model = getIntent().getStringExtra("model");
+        imageUrl = getIntent().getStringExtra("imageUrl");
+        numberOfSeats = getIntent().getIntExtra("numberOfSeats", 0);
+        topSpeed = getIntent().getIntExtra("topSpeed", 0);
+        rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
+        year = String.valueOf(getIntent().getIntExtra("year", 0));
+        description = getIntent().getStringExtra("description");
+        transmission = getIntent().getStringExtra("transmission");
+        VIN_number = getIntent().getStringExtra("vin");
+        fuel_type = getIntent().getStringExtra("fuel_type");
+        color = getIntent().getStringExtra("color");
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +136,7 @@ public class userActivty extends AppCompatActivity {
 
         });
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerInfo);
+
         // Set layout manager to horizontal
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -133,17 +149,7 @@ public class userActivty extends AppCompatActivity {
 
         TextView carDescription = findViewById(R.id.car_description);
         Button bookBtn = findViewById(R.id.bookbtn);
-        model = getIntent().getStringExtra("model");
-        imageUrl = getIntent().getStringExtra("imageUrl");
-        numberOfSeats = getIntent().getIntExtra("numberOfSeats", 0);
-        topSpeed = getIntent().getIntExtra("topSpeed", 0);
-        rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
-        year = String.valueOf(getIntent().getIntExtra("year",0));
-        description = getIntent().getStringExtra("description");
-        transmision= getIntent().getStringExtra("transmission");
-        VIN_number = getIntent().getStringExtra("vin");
-        fuel_type=getIntent().getStringExtra("fuel_type");
-        color=getIntent().getStringExtra("color");
+
 
         // Set data to views
         Glide.with(this).load(imageUrl).into(carImage);
@@ -171,22 +177,23 @@ public class userActivty extends AppCompatActivity {
 
     }
 
+
     public void backbtn(View view){
         Intent intent = new Intent(userActivty.this, MainActivity2.class );
         startActivity(intent);
     }
     private void initializeCardList(RecyclerView recyclerView) {
-
-        cardList.add(new CardModel(R.drawable.fuel_type, "Fuel Type",fuel_type ));
+        List<CardModel> cardList = new ArrayList<>();
+        cardList.add(new CardModel(R.drawable.fuel_type, "Fuel Type", fuel_type));
         cardList.add(new CardModel(R.drawable.year, "Year", String.valueOf(year)));
         cardList.add(new CardModel(R.drawable.capacity, "Capacity", String.valueOf(numberOfSeats)));
         cardList.add(new CardModel(R.drawable.speed, "Top Speed", String.valueOf(topSpeed)));
-        cardList.add(new CardModel(R.drawable.gear, "Transmission",transmision));
-        cardList.add(new CardModel(R.drawable.numcar, "Car Number",VIN_number));
-        cardList.add(new CardModel(R.drawable.colour, "Color",color));
-        cardList.add(new CardModel(R.drawable.price, "Rent Price",String.valueOf(rentPrice)));
+        cardList.add(new CardModel(R.drawable.gear, "transmission", transmission));
+        cardList.add(new CardModel(R.drawable.numcar, "Car Number", VIN_number));
+        cardList.add(new CardModel(R.drawable.colour, "Color", color));
+        cardList.add(new CardModel(R.drawable.price, "Rent Price", String.valueOf(rentPrice)));
 
-        CardAdapter adapter = new CardAdapter(this,cardList);
+        adapter = new CardAdapter(this, cardList);
         recyclerView.setAdapter(adapter);
     }
 

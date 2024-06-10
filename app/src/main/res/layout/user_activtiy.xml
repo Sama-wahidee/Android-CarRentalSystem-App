@@ -105,12 +105,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerInfo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="532dp"
-        android:layout_marginBottom="87dp"
+        android:layout_width="383dp"
+        android:layout_height="149dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="532dp"
+        android:layout_marginBottom="34dp" />
 
     <ImageView
         android:id="@+id/backbtn"
@@ -123,6 +123,15 @@
         android:onClick="backbtn"
         app:srcCompat="@drawable/back3" />
 
+    <TextView
+        android:id="@+id/testtxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="330dp"
+        android:text="TextView" />
 
 
 </RelativeLayout>
