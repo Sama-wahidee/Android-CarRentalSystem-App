@@ -79,7 +79,6 @@ public class adminActivity extends AppCompatActivity {
      String updatedTopSpeed ;
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-=======
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageButton imageButton;

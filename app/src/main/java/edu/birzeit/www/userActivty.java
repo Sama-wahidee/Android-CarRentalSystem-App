@@ -182,7 +182,7 @@ public class userActivty extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void bookbtn(View view){
+//    public void bookbtn(View view){
 
 
     public boolean onCreateOptionsMenu(Menu menu) {
