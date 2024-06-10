@@ -37,10 +37,14 @@ public class userActivty extends AppCompatActivity {
     String transmision;
     String fuel_type;
     String color;
+
+    List<CardModel> cardList = new ArrayList<>();
+
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageButton imageButton;
     private Menu menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,8 +127,8 @@ public class userActivty extends AppCompatActivity {
 
         ImageView carImage = findViewById(R.id.carimg);
         TextView carName = findViewById(R.id.modeltxt);
-       // TextView carSeats = findViewById(R.id.car_seats);
-       // TextView carSpeed = findViewById(R.id.car_speed);
+        // TextView carSeats = findViewById(R.id.car_seats);
+        // TextView carSpeed = findViewById(R.id.car_speed);
         TextView carPrice = findViewById(R.id.pricetxt);
 
         TextView carDescription = findViewById(R.id.car_description);
@@ -144,10 +148,10 @@ public class userActivty extends AppCompatActivity {
         // Set data to views
         Glide.with(this).load(imageUrl).into(carImage);
         carName.setText(model);
-       // carSeats.setText("Seats: " + numberOfSeats);
-       // carSpeed.setText("Top Speed: " + topSpeed + " km/h");
+        // carSeats.setText("Seats: " + numberOfSeats);
+        // carSpeed.setText("Top Speed: " + topSpeed + " km/h");
         carPrice.setText("Price per day: $" + rentPrice);
-       // carModel.setText("Model: " + model);
+        // carModel.setText("Model: " + model);
         carDescription.setText("Description: " + description);
         initializeCardList(recyclerView);
         bookBtn.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +168,7 @@ public class userActivty extends AppCompatActivity {
         startActivity(intent);
     }
     private void initializeCardList(RecyclerView recyclerView) {
-        List<CardModel> cardList = new ArrayList<>();
+
         cardList.add(new CardModel(R.drawable.fuel_type, "Fuel Type",fuel_type ));
         cardList.add(new CardModel(R.drawable.year, "Year", String.valueOf(year)));
         cardList.add(new CardModel(R.drawable.capacity, "Capacity", String.valueOf(numberOfSeats)));
@@ -177,6 +181,10 @@ public class userActivty extends AppCompatActivity {
         CardAdapter adapter = new CardAdapter(this,cardList);
         recyclerView.setAdapter(adapter);
     }
+
+    public void bookbtn(View view){
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();
 
@@ -194,5 +202,6 @@ public class userActivty extends AppCompatActivity {
         MenuItem reverItem = menu.findItem(R.id.reservations);
         reportItem.setVisible(login.isAdmin);
         return true;
+
     }
 }

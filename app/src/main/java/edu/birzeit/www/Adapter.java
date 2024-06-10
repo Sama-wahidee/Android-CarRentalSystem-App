@@ -31,6 +31,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     private final recyclerinterface recyclerinterface;
     private List<Car> cars;
     private Context context;
+
     public boolean isAdmin=login.isAdmin;
 
     public Adapter(   Context context,List<Car> cars , recyclerinterface recyclerinterface) {
