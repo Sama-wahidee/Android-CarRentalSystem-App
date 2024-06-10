@@ -21,13 +21,13 @@
         />
 
     <TextView
-        android:id="@+id/nametxt"
+        android:id="@+id/modeltxt"
         android:layout_width="156dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/carimg"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="22dp"
         android:fontFamily="sans-serif"
 
         android:textColor="#FFFF"
@@ -39,7 +39,7 @@
         android:id="@+id/car_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nametxt"
+        android:layout_below="@id/modeltxt"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="13dp"
@@ -98,16 +98,16 @@
         android:layout_below="@id/car_description"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
-        android:text="Overview"
+        android:layout_marginTop="16dp"
+        android:text="Overview:"
         android:textColor="#FFFF"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerInfo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="532dp"
         android:layout_marginBottom="87dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true" />
@@ -122,5 +122,25 @@
         android:layout_marginEnd="340dp"
         android:onClick="backbtn"
         app:srcCompat="@drawable/back3" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifImageView"
+        android:layout_width="109dp"
+        android:layout_height="109dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+
+
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="-9dp"
+        android:layout_marginBottom="545dp"
+        android:src="@drawable/bmwgff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>

@@ -53,7 +53,7 @@ Menu menu;
         drawerLayout = findViewById(R.id.drawerlayout);
         imageButton = findViewById(R.id.buttonDrawer);
         navigationView = findViewById(R.id.navigationView);
-        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerInfo);
         search = findViewById(R.id.search);
         filter = findViewById(R.id.filter);
         refresh=findViewById(R.id.refresh);
@@ -168,9 +168,9 @@ Menu menu;
                                 JSONObject object = array.getJSONObject(i);
                                 int year = object.optInt("Year", 0);
                                 String description = object.optString("description", "No description available");
-                                String vinNumber = object.optString("vinNumber", "");
+                                String vinNumber = object.optString("VIN_number", "");
                                 String fuelType = object.optString("fuelType", "");
-                                String transmission = object.optString("transmission", "");
+                                String transmission = object.optString("Transmission", "");
                                 int numberOfSeats = object.optInt("numberOfSeats", 0);
                                 int rentPrice = object.optInt("rentPrice", 0);
                                 String color = object.optString("color", "");
@@ -204,11 +204,7 @@ Menu menu;
 
     @Override
     public void onitemclick(int position) {
-        Intent intent = new Intent(MainActivity2.this, adminActivity.class);
-        intent.putExtra("model", cars.get(position).getModel());
-        intent.putExtra("reprice", cars.get(position).getRentPrice());
-        intent.putExtra("image", cars.get(position).getImageUrl());
-        startActivity(intent);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
