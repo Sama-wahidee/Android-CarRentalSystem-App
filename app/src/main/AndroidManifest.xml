@@ -37,9 +37,7 @@
         <activity
             android:name=".AdminOrders"
             android:exported="false" />
-        <activity
-            android:name=".ApdateActivity"
-            android:exported="false" />
+
         <activity
             android:name=".userActivty"
             android:exported="false" />
