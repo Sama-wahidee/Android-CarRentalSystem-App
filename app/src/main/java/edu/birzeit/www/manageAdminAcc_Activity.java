@@ -65,6 +65,7 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
 
         // Set click listener for the Save button
         saveButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 // Get data from EditTexts
@@ -74,21 +75,25 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
                 String address = addressEditText.getText().toString();
                 String password = password_edit_text.getText().toString();
 
+                // Save username and email to SharedPreferences to use them in tool bar [mainactivity2]
+                SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", username);
+                editor.putString("email", email);
+                editor.apply();
+                ////////////////////
                 // URL of the PHP script
                 String url = "http://10.0.2.2:80/project_android/update_user.php";
 
                 // Using Volley to send a POST request
                 RequestQueue queue = Volley.newRequestQueue(manageAdminAcc_Activity.this);
-                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
-                        response -> {
-                            // Handle the server's response
-                            Toast.makeText(manageAdminAcc_Activity.this, response, Toast.LENGTH_SHORT).show();
-                        },
-                        error -> {
-                            // Handle error
-                            Toast.makeText(manageAdminAcc_Activity.this, "Failed to update", Toast.LENGTH_SHORT).show();
-                        }
-                ) {
+                StringRequest postRequest = new StringRequest(Request.Method.POST, url, response -> {
+                    // Handle the server's response
+                    Toast.makeText(manageAdminAcc_Activity.this, response, Toast.LENGTH_SHORT).show();
+                }, error -> {
+                    // Handle error
+                    Toast.makeText(manageAdminAcc_Activity.this, "Failed to update", Toast.LENGTH_SHORT).show();
+                }) {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<>();
@@ -113,34 +118,33 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
         String url = "http://10.0.2.2:80/project_android/get_users.php?email=" + email;
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        try {
-                            if (response.length() > 0) {
-                                JSONObject user = response.getJSONObject(0); //  there's only one user returned
-                                String fetchedUsername = user.getString("UserName");
-                                String email = user.getString("Email");
-                                String phone = user.getString("Phone");
-                                String address = user.getString("Address");
-                                String password = user.getString("Password"); // Fetch the password
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    if (response.length() > 0) {
+                        JSONObject user = response.getJSONObject(0); //  there's only one user returned
+                        String fetchedUsername = user.getString("UserName");
+                        String email = user.getString("Email");
+                        String phone = user.getString("Phone");
+                        String address = user.getString("Address");
+                        String password = user.getString("Password"); // Fetch the password
 
-                                // Autofill EditTexts
-                                usernameEditText.setText(fetchedUsername);
-                                emailEditText.setText(email);
-                                phoneEditText.setText(phone);
-                                addressEditText.setText(address);
-                                password_edit_text.setText(password);
+                        // Autofill EditTexts
+                        usernameEditText.setText(fetchedUsername);
+                        emailEditText.setText(email);
+                        phoneEditText.setText(phone);
+                        addressEditText.setText(address);
+                        password_edit_text.setText(password);
 
-                                // Set InputType to display actual password
-                                password_edit_text.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        // Set InputType to display actual password
+                        password_edit_text.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     }
-                }, new Response.ErrorListener() {
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();

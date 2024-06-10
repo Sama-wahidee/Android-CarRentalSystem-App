@@ -100,6 +100,12 @@ Menu menu;
                     Intent intent = new Intent(MainActivity2.this, UserReservations.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.ContactUsOption) {
+                    Toast.makeText(MainActivity2.this, "Contact Us Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, ContacUsActivity.class);
+                    startActivity(intent);
+                }
+                
                 if (itemId == R.id.logout) {
                     Toast.makeText(MainActivity2.this, "Logging out...", Toast.LENGTH_SHORT).show();
                     getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
@@ -118,6 +124,9 @@ Menu menu;
                 drawerLayout.close();
                 return false;
             }
+
+
+
         });
 
         filter.setOnClickListener(new View.OnClickListener() {

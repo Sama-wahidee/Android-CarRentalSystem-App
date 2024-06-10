@@ -19,6 +19,7 @@
         android:padding="8dp">
 
         <!-- Include The Header Layout -->
+
         <include
             android:id="@+id/header"
             layout="@layout/header"
@@ -27,16 +28,20 @@
 
         <TextView
             android:id="@+id/title1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="75dp"
             android:background="@drawable/manage_box"
             android:fontFamily="@font/font1"
-            android:text=" Personal Information:-  "
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:text=" Personal Information :-"
             android:textColor="@color/darkgray"
             android:textColorHighlight="@color/green"
-            android:textSize="20dp" />
+            android:textSize="22dp" />
 
         <!-- Username -->
         <LinearLayout
@@ -56,15 +61,15 @@
 
             <EditText
                 android:id="@+id/username_edit_text"
-                style="@style/AddStyle"
+                style="@style/HintStyle"
                 android:layout_width="12dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/edittxt_border"
                 android:enabled="false"
+                android:hint="username123"
                 android:padding="8dp"
-                android:text="username123"
-                android:textColor="@android:color/white" />
+                android:textColorHint="@color/lightestGreen" />
 
             <ImageView
                 android:id="@+id/username_edit_icon"
@@ -95,16 +100,17 @@
 
             <EditText
                 android:id="@+id/password_edit_text"
+                style="@style/HintStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/edittxt_border"
                 android:enabled="false"
                 android:fontFamily="@font/font1"
+                android:hint="********"
                 android:inputType="textPassword"
                 android:padding="8dp"
-                android:text="********"
-                android:textColor="@android:color/white" />
+                android:textColorHint="@color/lightestGreen" />
 
             <ImageView
                 android:id="@+id/password_edit_icon"
@@ -117,26 +123,30 @@
         </LinearLayout>
 
         <!-- Update Email Address -->
-        <TextView
-            android:id="@+id/line1"
-            style="@style/AddStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="_______________________________________________ "
-            android:textColor="@color/lightestGreen" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/line1"-->
+        <!--            style="@style/AddStyle"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="_________________________________ "-->
+        <!--            android:textColor="@color/lightestGreen" />-->
 
         <TextView
             android:id="@+id/title2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:background="@drawable/manage_box"
             android:fontFamily="@font/font1"
-            android:text=" Contact Information:-  "
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:text=" Contact Information :- "
             android:textColor="@color/darkgray"
             android:textColorHighlight="@color/green"
-            android:textSize="20dp" />
+            android:textSize="22dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -155,14 +165,14 @@
 
             <EditText
                 android:id="@+id/email_edit_text"
-                style="@style/AddStyle"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                style="@style/HintStyle"
+                android:layout_width="220dp"
+                android:layout_height="40dp"
                 android:background="@drawable/edittxt_border"
                 android:enabled="false"
+                android:hint="ex@example.com"
                 android:padding="8dp"
-                android:text=" example@example.com"
-                android:textColor="@android:color/white" />
+                android:textColorHint="@color/lightestGreen" />
 
             <!--            <ImageView-->
             <!--                android:id="@+id/email_edit_icon"-->
@@ -192,15 +202,15 @@
 
             <EditText
                 android:id="@+id/phone_edit_text"
-                style="@style/AddStyle"
+                style="@style/HintStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/edittxt_border"
                 android:enabled="false"
+                android:hint="059874562"
                 android:padding="8dp"
-                android:text="059874562"
-                android:textColor="@android:color/white" />
+                android:textColorHint="@color/lightestGreen" />
 
             <ImageView
                 android:id="@+id/phone_edit_icon"
@@ -230,15 +240,15 @@
 
             <EditText
                 android:id="@+id/address_edit_text"
-                style="@style/AddStyle"
+                style="@style/HintStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/edittxt_border"
                 android:enabled="false"
+                android:hint="Ramallah"
                 android:padding="8dp"
-                android:text="Ramallah"
-                android:textColor="@android:color/white" />
+                android:textColorHint="@color/lightestGreen" />
 
             <ImageView
                 android:id="@+id/address_edit_icon"
@@ -250,23 +260,24 @@
                 android:src="@drawable/pen" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/line2"
-            style="@style/AddStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="_______________________________________________ "
-            android:textColor="@color/lightestGreen" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/line2"-->
+        <!--            style="@style/AddStyle"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="_________________________________ "-->
+        <!--            android:textColor="@color/lightestGreen" />-->
 
         <!-- Delete Account -->
 
         <Button
             android:id="@+id/save_button"
             style="@style/ChooserBtnShape"
-            android:layout_width="wrap_content"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/custom_button"
             android:clickable="true"
             android:focusable="true"
             android:text="  Save Changes  " />

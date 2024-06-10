@@ -38,7 +38,7 @@
 <group android:id="@+id/group3">
     <item
         android:icon="@drawable/contactus"
-        android:id="@+id/navcontactUs"
+        android:id="@+id/ContactUsOption"
         android:title="@string/contact_us"/>
     <item
         android:icon="@drawable/info"

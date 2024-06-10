@@ -1,6 +1,8 @@
 package edu.birzeit.www;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
@@ -37,6 +39,10 @@ public class login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        emailEditText = findViewById(R.id.editTextEmail);
+        passwordEditText = findViewById(R.id.editTextTextPassword);
 
         // Check login state
         if (getSharedPreferences("loginPrefs", MODE_PRIVATE).getBoolean("isLoggedIn", false)) {
@@ -46,10 +52,18 @@ public class login extends AppCompatActivity {
             return;
         }
 
-        setContentView(R.layout.activity_login);
 
-        emailEditText = findViewById(R.id.editTextEmail);
-        passwordEditText = findViewById(R.id.editTextTextPassword);
+
+
+
+
+        //Shahd Update starts
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("email", emailEditText.getText().toString());
+        editor.apply();
+        //Shahd Update ends
+
 
         // Fetch user data
         loadUsers();
@@ -143,13 +157,19 @@ public class login extends AppCompatActivity {
         } else {
             // Check if the user is an admin
             isAdmin = enteredEmail.endsWith("@a.rent");
-            currentUser=foundUser;
+            currentUser = foundUser;
 
             // Save login state
             getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
                     .putBoolean("isLoggedIn", true)
                     .putString("userEmail", enteredEmail)
                     .apply();
+
+            // Save email to user_prefs
+            SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("email", enteredEmail);
+            editor.apply();
 
             if (isAdmin) {
                 Toast.makeText(this, "Admin Login Successful", Toast.LENGTH_SHORT).show();
@@ -161,6 +181,8 @@ public class login extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    ///
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -38,10 +38,19 @@
     <string name="numberOfSeats"><font color="#beffdd">Number Of Seats</font></string>
     <string name="fuelType"><font color="#beffdd">Fuel Type</font></string>
     <string name="transmissionSpinner"><font color="#beffdd">Transmission Type</font></string>
+    <!--    <string name="contactUsIntro">-->
+    <!--        <font color="#24282f">-->
+    <!--            We'd love to hear from you!\n-->
+    <!--            Fill out the form below and we'll\n-->
+    <!--            get back to you as soon as possible! :)-->
+    <!--        </font>-->
+    <!--    </string>-->
+    <!--    <string name="contactUsSubjectHint">"  Inquiry about Services"</string>-->
+    <!--    <string name="contactUsMessageHint">"    Hi there!\n    I'm interested in your\n    services. Please provide\n    more info.\n    Thanks"</string>-->
 
     <string name="open">Open</string>
     <string name="close">Close</string>
-    <!--    _____________________ **SHAHD** ________________________________-->
+]    <!--    _____________________ **SHAHD** ________________________________-->
 
 
 </resources>
