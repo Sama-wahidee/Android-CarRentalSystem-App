@@ -156,6 +156,154 @@ public class SideDrawerFragment extends DialogFragment {
         }
     }
 
+//    private void applyFilter() {
+//        // Close the filter dialog
+//        dismiss();
+//
+//        // Initialize filter flags
+//        boolean filterByColor = false;
+//        boolean filterByBrand = false;
+//        boolean filterByTransmission = false;
+//        boolean filterBySeats = false;
+//        boolean filterByFuel = false;
+//        boolean filterByPrice = false;
+//
+//        // Initialize selected filter criteria lists
+//        List<String> selectedColors = new ArrayList<>();
+//        List<String> selectedBrands = new ArrayList<>();
+//        List<String> selectedTransmissions = new ArrayList<>();
+//        List<Integer> selectedSeats = new ArrayList<>();
+//        List<String> selectedFuelTypes = new ArrayList<>();
+//        int minPrice = 0;
+//        int maxPrice = Integer.MAX_VALUE;
+//
+//        // Get references to filter views
+//        ScrollView filterLayout = getView().findViewById(R.id.filterLayout);
+//
+//        // Get brand filter choices
+//        LinearLayout layoutBrandChoices = filterLayout.findViewById(R.id.layoutBrandChoices);
+//        if (layoutBrandChoices.getVisibility() == View.VISIBLE) {
+//            filterByBrand = true;
+//            CheckBox[] brandCheckBoxes = {
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand1),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand2),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand3),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand4),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand5),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand6),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand7),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand8),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand9),
+//                    layoutBrandChoices.findViewById(R.id.checkbox_brand10)
+//            };
+//            for (CheckBox checkBox : brandCheckBoxes) {
+//                if (checkBox.isChecked()) {
+//                    selectedBrands.add(checkBox.getText().toString());
+//                }
+//            }
+//        }
+//
+//        // Get fuel filter choices
+//        LinearLayout layoutFuelChoices = filterLayout.findViewById(R.id.layoutFuelChoices);
+//        if (layoutFuelChoices.getVisibility() == View.VISIBLE) {
+//            filterByFuel = true;
+//            CheckBox[] fuelCheckBoxes = {
+//                    layoutFuelChoices.findViewById(R.id.checkboxFuel1),
+//                    layoutFuelChoices.findViewById(R.id.checkboxFuel2),
+//                    layoutFuelChoices.findViewById(R.id.checkboxFuel3),
+//                    layoutFuelChoices.findViewById(R.id.checkboxFuel4)
+//            };
+//            for (CheckBox checkBox : fuelCheckBoxes) {
+//                if (checkBox.isChecked()) {
+//                    selectedFuelTypes.add(checkBox.getText().toString());
+//                }
+//            }
+//        }
+//
+//        // Get transmission filter choices
+//        LinearLayout layoutTransmissionChoices = filterLayout.findViewById(R.id.layoutTransmissionChoices);
+//        if (layoutTransmissionChoices.getVisibility() == View.VISIBLE) {
+//            filterByTransmission = true;
+//            CheckBox[] transmissionCheckBoxes = {
+//                    layoutTransmissionChoices.findViewById(R.id.checkboxTransmission1),
+//                    layoutTransmissionChoices.findViewById(R.id.checkboxTransmission2)
+//            };
+//            for (CheckBox checkBox : transmissionCheckBoxes) {
+//                if (checkBox.isChecked()) {
+//                    selectedTransmissions.add(checkBox.getText().toString());
+//                }
+//            }
+//        }
+//
+//        // Get seats filter choices
+//        LinearLayout layoutSeatsChoices = filterLayout.findViewById(R.id.layoutSeatsChoices);
+//        if (layoutSeatsChoices.getVisibility() == View.VISIBLE) {
+//            filterBySeats = true;
+//            CheckBox[] seatsCheckBoxes = {
+//                    layoutSeatsChoices.findViewById(R.id.checkboxSeat1),
+//                    layoutSeatsChoices.findViewById(R.id.checkboxSeat2),
+//                    layoutSeatsChoices.findViewById(R.id.checkboxSeat3),
+//                    layoutSeatsChoices.findViewById(R.id.checkboxSeat4),
+//                    layoutSeatsChoices.findViewById(R.id.checkboxSeat5)
+//            };
+//            for (CheckBox checkBox : seatsCheckBoxes) {
+//                if (checkBox.isChecked()) {
+//                    selectedSeats.add(Integer.parseInt(checkBox.getText().toString().split(" ")[0]));
+//                }
+//            }
+//        }
+//
+//        // Get color filter choices
+//        LinearLayout layoutColorChoices = filterLayout.findViewById(R.id.layoutColorChoices);
+//        if (layoutColorChoices.getVisibility() == View.VISIBLE) {
+//            filterByColor = true;
+//            CheckBox[] colorCheckBoxes = {
+//                    layoutColorChoices.findViewById(R.id.checkbox_red),
+//                    layoutColorChoices.findViewById(R.id.checkbox_green),
+//                    layoutColorChoices.findViewById(R.id.checkbox_blue),
+//                    layoutColorChoices.findViewById(R.id.checkbox_white),
+//                    layoutColorChoices.findViewById(R.id.checkbox_silver),
+//                    layoutColorChoices.findViewById(R.id.checkbox_black)
+//            };
+//            for (CheckBox checkBox : colorCheckBoxes) {
+//                if (checkBox.isChecked()) {
+//                    selectedColors.add(checkBox.getText().toString().trim());
+//                }
+//            }
+//        }
+//
+//        // Get price filter choices
+//        LinearLayout layoutPriceChoices = filterLayout.findViewById(R.id.layoutPriceChoices);
+//        if (layoutPriceChoices.getVisibility() == View.VISIBLE) {
+//            filterByPrice = true;
+//            RangeSeekBar rangeSeekBar = layoutPriceChoices.findViewById(R.id.priseseekbar);
+//            minPrice = rangeSeekBar.getSelectedMinValue().intValue();
+//            maxPrice = rangeSeekBar.getSelectedMaxValue().intValue();
+//        }
+//
+//        // Filter cars based on selected criteria
+//        List<Car> filteredCars = new ArrayList<>();
+//        for (Car car : activity.cars) {
+//            String[] parts = car.getModel().split(" ");
+//            String brand = parts[0];
+//            String model = parts[1];
+//            if ((!filterByColor || selectedColors.contains(car.getColor())) &&
+//                    (!filterByBrand || selectedBrands.contains(brand)) &&
+//                    (!filterByTransmission || selectedTransmissions.contains(car.getTransmission())) &&
+//                    (!filterBySeats || selectedSeats.contains(car.getNumberOfSeats())) &&
+//                    (!filterByFuel || selectedFuelTypes.contains(car.getFuelType())) &&
+//                    (!filterByPrice || (car.getRentPrice() >= minPrice && car.getRentPrice() <= maxPrice))) {
+//                // Add the car if it matches all criteria
+//                filteredCars.add(car);
+//            }
+//        }
+//
+//        // Update RecyclerView in MainActivity2 with filtered cars
+//        if (activity != null) {
+//            activity.updateCarList(filteredCars);
+//        }
+//    }
+
     private void applyFilter() {
         // Close the filter dialog
         dismiss();
@@ -285,6 +433,9 @@ public class SideDrawerFragment extends DialogFragment {
         List<Car> filteredCars = new ArrayList<>();
         for (Car car : activity.cars) {
             String[] parts = car.getModel().split(" ");
+            if (parts.length < 2) {
+                continue; // Skip cars with invalid model format
+            }
             String brand = parts[0];
             String model = parts[1];
             if ((!filterByColor || selectedColors.contains(car.getColor())) &&
@@ -303,6 +454,8 @@ public class SideDrawerFragment extends DialogFragment {
             activity.updateCarList(filteredCars);
         }
     }
+
+
     private void clearFilterForm() {
         if (getView() != null) {
             // Clear brand choices
