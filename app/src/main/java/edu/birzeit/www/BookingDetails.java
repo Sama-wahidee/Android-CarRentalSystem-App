@@ -46,6 +46,13 @@ public class BookingDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
 
+        initializeViews();
+        fetchUserData();
+        setupButtonListeners();
+    }
+
+    private void initializeViews() {
+        // Initializing views from layout
         VINEditText = findViewById(R.id.vin);
         userNameEditText = findViewById(R.id.fullname);
         phoneEditText = findViewById(R.id.phone);
@@ -54,117 +61,104 @@ public class BookingDetails extends AppCompatActivity {
         rentalperiod = findViewById(R.id.rentalperiod);
         bookCarButton = findViewById(R.id.bookBtn);
         calendarimage = findViewById(R.id.calendarimage);
+        rentPriceTextView = findViewById(R.id.rentcost);
+    }
 
-        // Retrieve user email from SharedPreferences
+    private void fetchUserData() {
+        // Fetch user data from server
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         String savedEmail = sharedPreferences.getString("email", "");
-
-        // Make HTTP request to fetch user data
         String getUserUrl = "http://10.0.2.2:80/project_android/get_users.php?email=" + savedEmail;
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                try {
-                    if (response.length() > 0) {
-                        JSONObject user = response.getJSONObject(0); // Assuming only one user is returned
-                        String fetchedUsername = user.getString("UserName");
-                        String fetchedEmail = user.getString("Email");
-                        String fetchedPhone = user.getString("Phone");
-//                        String fetchedAddress = user.getString("Address");
-
-                        // Autofill EditTexts
-                        userNameEditText.setText(fetchedUsername);
-                        emailEditText.setText(fetchedEmail);
-                        phoneEditText.setText(fetchedPhone);
-                        // Address field in BookingDetails layout should be added
-                        // Assuming the ID of address EditText is "address"
-//                        EditText addressEditText = findViewById(R.id.address);
-//                        addressEditText.setText(fetchedAddress);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null,
+                response -> {
+                    try {
+                        if (response.length() > 0) {
+                            JSONObject user = response.getJSONObject(0);
+                            userNameEditText.setText(user.getString("UserName"));
+                            emailEditText.setText(user.getString("Email"));
+                            phoneEditText.setText(user.getString("Phone"));
+                        }
+                    } catch (JSONException e) {
+                        Log.e(TAG, "JSON parsing error", e);
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // Handle error
-                Toast.makeText(BookingDetails.this, "Failed to Fetch", Toast.LENGTH_SHORT).show();
-            }
-        });
+                },
+                error -> Toast.makeText(BookingDetails.this, "Failed to fetch user data.", Toast.LENGTH_SHORT).show()
+        );
         queue.add(jsonArrayRequest);
-
-        // Handle booking button click
-        bookCarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                bookCar();
-            }
-        });
-
         String vinNumber = getIntent().getStringExtra("vinNumber");
-       double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
+        double rentPrice = getIntent().getDoubleExtra("rentPrice", 0.0);
 
         // Use the values as needed
         // For example, set them to TextViews
-        EditText vinNumberTextView = findViewById(R.id.vin);
-        vinNumberTextView.setText("VIN Number: " + vinNumber);
+        EditText vinNumberTextView = findViewById(R.id.vin); //edit text - shahd
+        vinNumberTextView.setText(vinNumber);//shahd edit
 
-         rentPriceTextView = findViewById(R.id.rentcost);
-        rentPriceTextView.setText("Rent Price: " + rentPrice);
+        rentPriceTextView = findViewById(R.id.rentcost);
+        rentPriceTextView.setText("" + rentPrice); //shahd edit
 
+    }
 
-
-        // Handle calendar image click
-        calendarimage.setOnClickListener(view -> DatePickerdialog());
+    private void setupButtonListeners() {
+        // Setting up listeners for buttons
+        bookCarButton.setOnClickListener(v -> bookCar());
+        calendarimage.setOnClickListener(v -> DatePickerdialog());
     }
 
     private void bookCar() {
-        // Get values from EditText fields
-        final String VIN_number = VINEditText.getText().toString().trim();
-        final String UserName = userNameEditText.getText().toString().trim();
-        final String phone = phoneEditText.getText().toString().trim();
-        final String Email = emailEditText.getText().toString().trim();
-        final String order_date = rentalperiod.getText().toString().trim();
-        final String rent_cost = rentCostEditText.getText().toString().trim();
+        // Prepare and send booking data to server
+        String VIN_number = VINEditText.getText().toString().trim();
+        String userName = userNameEditText.getText().toString().trim();
+        String phone = phoneEditText.getText().toString().trim();
+        String email = emailEditText.getText().toString().trim();
+        String startDate = rentalperiod.getText().toString().split(" - ")[0];  // Assuming date format is "start - end"
+        String endDate = rentalperiod.getText().toString().split(" - ")[1];
+        String rentCost = rentCostEditText.getText().toString().trim();
 
-        // Make sure all fields are filled
-        if (UserName.isEmpty() || phone.isEmpty() || Email.isEmpty() || order_date.isEmpty() || rent_cost.isEmpty() || VIN_number.isEmpty()) {
+        if (fieldsAreValid(userName, phone, email, startDate, endDate, rentCost, VIN_number)) {
+            sendBookingToServer(VIN_number, rentCost, userName, email, phone, startDate, endDate);
+        } else {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-            return;
         }
+    }
 
-        // Make HTTP request to book the car
-        String BOOKING_URL = "http://192.168.56.1/project_android/booking_car.php";
+    private boolean fieldsAreValid(String... fields) {
+        // Check if any fields are empty
+        for (String field : fields) {
+            if (field.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void sendBookingToServer(String VIN_number, String rentCost, String userName, String email, String phone, String startDate, String endDate) {
+        // Send booking data to server via POST request
+        String bookingUrl = "http://10.0.2.2:80/project_android/booking_car.php";
         RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, BOOKING_URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    String message = jsonResponse.getString("message");
-                    Log.d(TAG, "Response: " + message);
-                    Toast.makeText(BookingDetails.this, message, Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Error: " + error.toString());
-                Toast.makeText(BookingDetails.this, "Booking failed. Please try again.", Toast.LENGTH_SHORT).show();
-            }
-        }) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, bookingUrl,
+                response -> {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        Toast.makeText(BookingDetails.this, jsonResponse.getString("message"), Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        Log.e(TAG, "JSON Exception", e);
+                        Toast.makeText(BookingDetails.this, "Error parsing server response.", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> {
+                    Log.e(TAG, "Volley Error: " + error.toString());
+                    Toast.makeText(BookingDetails.this, "Booking failed. Please try again.", Toast.LENGTH_SHORT).show();
+                }) {
             @Override
             protected Map<String, String> getParams() {
+                // Prepare data to be sent via POST
                 Map<String, String> params = new HashMap<>();
                 params.put("VIN_number", VIN_number);
-                params.put("rent_cost", rent_cost);
-                params.put("UserName", UserName);
-                params.put("Email", Email);
+                params.put("rent_cost", rentCost);
+                params.put("UserName", userName);
+                params.put("Email", email);
                 params.put("phone", phone);
                 params.put("startDate", startDate);
                 params.put("endDate", endDate);
@@ -174,76 +168,15 @@ public class BookingDetails extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
-    String startDate;
-    String endDate ;
     private void DatePickerdialog() {
-        // Creating a MaterialDatePicker builder for selecting a date range
+        // Date picker dialog setup
         MaterialDatePicker.Builder<Pair<Long, Long>> builder = MaterialDatePicker.Builder.dateRangePicker();
-        builder.setTitleText("Select a date range");
-
-        // Apply custom style here
-        builder.setTheme(R.style.DatePickerDialogTheme);
-
-        // Building the date picker dialog
+        builder.setTitleText("Select a date range").setTheme(R.style.DatePickerDialogTheme);
         MaterialDatePicker<Pair<Long, Long>> datePicker = builder.build();
-
-        // Setting up the listener for the positive button click
         datePicker.addOnPositiveButtonClickListener(selection -> {
-            try {
-                // Retrieving the selected start and end dates
-                Long startDateV = selection.first;
-                Long endDateV = selection.second;
-
-                if (startDateV != null && endDateV != null) {
-                    // Formatting the selected dates as strings
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                    String startDate = sdf.format(new Date(startDateV));
-                    String endDate = sdf.format(new Date(endDateV));
-
-                    // Creating the date range string
-                    String selectedDateRange = startDate + " - " + endDate;
-
-                    // Displaying the selected date range in the TextView
-                    rentalperiod.setText(selectedDateRange);
-
-                    // Calculate the number of days between the selected dates
-                    long diffInMillis = endDateV - startDateV;
-                    long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
-
-                    // Parse the rent price from the rentPriceTextView
-                    String rentPriceText = rentPriceTextView.getText().toString().trim();
-                    Log.d("DatePickerdialog", "Rent Price Text: " + rentPriceText);
-
-                    // Ensure the rent price text is a valid number
-                    if (rentPriceText.startsWith("Rent Price: ")) {
-                        rentPriceText = rentPriceText.replace("Rent Price: ", "").trim();
-                    }
-
-                    double rentPrice = Double.parseDouble(rentPriceText);
-
-                    // Calculate the total rent price
-                    double totalRentPrice = diffInDays * rentPrice;
-
-                    // Set the total rent price in the totalRentTextView
-                    rentPriceTextView.setText("Total Rent Price: " + totalRentPrice);
-                } else {
-                    Toast.makeText(this, "Please select a valid date range", Toast.LENGTH_SHORT).show();
-                }
-            } catch (NumberFormatException e) {
-                Toast.makeText(this, "Error parsing the rent price: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("DatePickerdialog", "Error parsing rent price", e);
-            } catch (Exception e) {
-                Toast.makeText(this, "An unexpected error occurred: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("DatePickerdialog", "Unexpected error", e);
-            }
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            rentalperiod.setText(sdf.format(new Date(selection.first)) + " - " + sdf.format(new Date(selection.second)));
         });
-
-        // Showing the date picker dialog
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
     }
-
-
-
-
-
 }
