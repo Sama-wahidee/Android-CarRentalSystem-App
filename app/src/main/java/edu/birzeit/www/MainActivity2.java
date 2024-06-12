@@ -177,6 +177,11 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
                     Intent intent = new Intent(MainActivity2.this, MainActivity2.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(MainActivity2.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, AboutUs.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }

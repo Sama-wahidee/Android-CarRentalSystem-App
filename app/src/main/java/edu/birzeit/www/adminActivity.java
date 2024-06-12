@@ -204,6 +204,11 @@ public class adminActivity extends AppCompatActivity {
                     Intent intent = new Intent(adminActivity.this, MainActivity2.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(adminActivity.this, "About Us", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(adminActivity.this, AboutUs.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }

@@ -166,6 +166,11 @@ public class UserReservations extends AppCompatActivity {
                     Intent intent = new Intent(UserReservations.this, MainActivity2.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(UserReservations.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(UserReservations.this, AboutUs.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }

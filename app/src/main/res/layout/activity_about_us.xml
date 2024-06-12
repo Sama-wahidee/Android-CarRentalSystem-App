@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkgray"
+    tools:context=".AboutUs">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/header"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="258dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="500dp"
+        android:fontFamily="@font/font1"
+        android:text="About Us"
+        android:textColor="@color/white"
+        android:textSize="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="419dp"
+        android:layout_height="596dp"
+        android:layout_marginStart="4dp"
+        android:fontFamily="@font/font1"
+        android:text="Welcome to Rent Ease, your trusted partner for all your car rental needs. \nOur mission is to provide a seamless, reliable, and affordable car rental experience to locals. \nWith a diverse fleet of vehicles ranging from economy to luxury, we cater to all kinds of journeys—be it a business trip, a family vacation, or a spontaneous road trip.
+
+\n\nAt Rent Ease, we prioritize customer satisfaction and convenience. \nOur user-friendly app makes it easy to browse, compare, and book cars in just a few taps. \nWe pride ourselves on our transparent pricing, with no hidden fees, and our exceptional customer service team is always ready to assist you, ensuring a smooth and enjoyable rental experience from start to finish.
+
+\n\nJoin us and explore the freedom of the open road with confidence, knowing that Rent Ease is here to support you every mile of the way."
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

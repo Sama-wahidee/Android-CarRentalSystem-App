@@ -116,6 +116,11 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
                     Intent intent = new Intent(manageAdminAcc_Activity.this, MainActivity2.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(manageAdminAcc_Activity.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(manageAdminAcc_Activity.this, AboutUs.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }

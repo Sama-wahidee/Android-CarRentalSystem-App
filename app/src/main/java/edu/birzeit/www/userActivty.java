@@ -187,6 +187,11 @@ public class userActivty extends AppCompatActivity {
                     Intent intent = new Intent(userActivty.this, MainActivity2.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(userActivty.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(userActivty.this, AboutUs.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }

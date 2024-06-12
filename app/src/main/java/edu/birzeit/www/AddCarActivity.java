@@ -190,6 +190,11 @@ public class AddCarActivity extends AppCompatActivity {
                     Intent intent = new Intent(AddCarActivity.this, MainActivity2.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(AddCarActivity.this, "About Us", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddCarActivity.this, AboutUs.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }

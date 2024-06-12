@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,45 +11,49 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
-public class ReportActivity extends AppCompatActivity {
-    private TextView totalCarsTxt, repairCarTxt, rentedCarsTxt, availableCarsTxt,customerTxt;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class AboutUs extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageButton imageButton;
-    TextView textViewUsername, textViewEmail;
-
     private Menu menu;
+    TextView textViewUsername, textViewEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mainr);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_mainaau);
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigationView);
         imageButton = findViewById(R.id.buttonDrawer);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menu = navigationView.getMenu();
+                onCreateOptionsMenu(menu);
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
         //--------------------------** SHAHD EDIT **-----------------------------
         // to show name & email on tool bar..
         textViewUsername = findViewById(R.id.textViewUsername);
@@ -93,72 +96,64 @@ public class ReportActivity extends AppCompatActivity {
 
         }, error -> {
             // Handle error
-            Toast.makeText(ReportActivity.this, "Failed to Fetch", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AboutUs.this, "Failed to Fetch", Toast.LENGTH_SHORT).show();
         });
         queue.add(jsonArrayRequest);
 //--------------------------** SHAHD EDIT **-----------------------------
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                menu = navigationView.getMenu();
-                onCreateOptionsMenu(menu);
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int itemId = menuItem.getItemId();
                 if (itemId == R.id.AdminSettingOption) {
-                    Toast.makeText(ReportActivity.this, "Account Setting Option", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, manageAdminAcc_Activity.class);
+                    Toast.makeText(AboutUs.this, "Account Setting Option", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, manageAdminAcc_Activity.class);
                     startActivity(intent);
                 }
                 if (itemId == R.id.addCarOption) {
-                    Toast.makeText(ReportActivity.this, "Add Car Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, AddCarActivity.class);
+                    Toast.makeText(AboutUs.this, "Add Car Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, AddCarActivity.class);
                     startActivity(intent);
                 }
                 if (itemId == R.id.reportOption) {
-                    Toast.makeText(ReportActivity.this, "Report Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, ReportActivity.class);
+                    Toast.makeText(AboutUs.this, "Report Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, ReportActivity.class);
                     startActivity(intent);
                 }
                 if (itemId == R.id.orders) {
-                    Toast.makeText(ReportActivity.this, "Admin Orders Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, AdminOrders.class);
+                    Toast.makeText(AboutUs.this, "Admin Orders Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, AdminOrders.class);
                     startActivity(intent);
                 }
                 if (itemId == R.id.reservations) {
-                    Toast.makeText(ReportActivity.this, "Reservations Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, UserReservations.class);
+                    Toast.makeText(AboutUs.this, "Reservations Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, UserReservations.class);
                     startActivity(intent);
                 }
                 if (itemId == R.id.ContactUsOption) {
-                    Toast.makeText(ReportActivity.this, "Contact Us Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, ContacUsActivity.class);
+                    Toast.makeText(AboutUs.this, "Contact Us Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, ContacUsActivity.class);
                     startActivity(intent);
                 }
 
                 if (itemId == R.id.logout) {
-                    Toast.makeText(ReportActivity.this, "Logging out...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AboutUs.this, "Logging out...", Toast.LENGTH_SHORT).show();
                     getSharedPreferences("loginPrefs", MODE_PRIVATE).edit()
                             .clear()
                             .apply();
 
-                    Intent intent = new Intent(ReportActivity.this, MainActivity.class);
+                    Intent intent = new Intent(AboutUs.this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 }
                 if (itemId == R.id.home) {
-                    Toast.makeText(ReportActivity.this, "Home Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, MainActivity2.class);
+                    Toast.makeText(AboutUs.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, MainActivity2.class);
                     startActivity(intent);
                 }
                 if (itemId == R.id.navaboutUs) {
-                    Toast.makeText(ReportActivity.this, "Home Page", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ReportActivity.this, AboutUs.class);
+                    Toast.makeText(AboutUs.this, "About Us", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AboutUs.this, AboutUs.class);
                     startActivity(intent);
                 }
                 drawerLayout.close();
@@ -167,42 +162,7 @@ public class ReportActivity extends AppCompatActivity {
 
 
         });
-        totalCarsTxt = findViewById(R.id.TotalCarsTxt);
-        rentedCarsTxt = findViewById(R.id.rentedCarsTxt);
-        availableCarsTxt = findViewById(R.id.AvilabileCarsTxt);
-        customerTxt = findViewById(R.id.customerTxt);
-        repairCarTxt = findViewById(R.id.repairCarTxt);
 
-        fetchData();
-    }
-
-    private void fetchData() {
-        String url = "http://10.0.2.2:80/project_android/GetReportData.php";
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        int totalCars = response.getInt("totalCars");
-                        int rentedCars = response.getInt("rentedCars");
-                        int availableCars = response.getInt("availableCars");
-                        int gmailUsers = response.getInt("gmailUsers");
-                        int repairCars = response.getInt("under_maintenance");
-
-                        totalCarsTxt.setText(String.valueOf(totalCars));
-                        rentedCarsTxt.setText(String.valueOf(rentedCars));
-                        availableCarsTxt.setText(String.valueOf(availableCars));
-                        customerTxt.setText(String.valueOf(gmailUsers));
-                        repairCarTxt.setText(String.valueOf(repairCars));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                },
-                error -> {
-                    // Handle error
-                    Log.e("ReportActivity", "Error fetching data: " + error.getMessage());
-                });
-
-        // Add the request to the RequestQueue
-        Volley.newRequestQueue(this).add(request);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.clear();
@@ -225,4 +185,3 @@ public class ReportActivity extends AppCompatActivity {
         return true;
     }
 }
-
