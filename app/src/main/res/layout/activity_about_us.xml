@@ -11,7 +11,6 @@
     <include
         android:id="@+id/include"
         layout="@layout/header"
-        android:layout_marginBottom="68dp"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
