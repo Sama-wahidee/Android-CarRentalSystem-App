@@ -33,8 +33,8 @@ import java.util.List;
 public class UserReservations extends AppCompatActivity {
 
     private static final String TAG = "UserReservations";
-    private static final String FETCH_ORDERS_URL = "http://192.168.56.1/project_android/admin_orders.php?email=";
-    private static final String FETCH_ORDER_DETAILS_URL = "http://192.168.56.1/project_android/order_details.php?order_id=";
+    private static final String FETCH_ORDERS_URL = "http://10.0.2.2:80/project_android/admin_orders.php?email=";
+    private static final String FETCH_ORDER_DETAILS_URL = "http://10.0.2.2:80/project_android/order_details.php?order_id=";
     private ListView ordersListView;
     private ArrayAdapter<String> ordersAdapter;
     private List<String> orderTitles = new ArrayList<>();

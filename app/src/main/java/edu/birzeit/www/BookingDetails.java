@@ -40,6 +40,7 @@ public class BookingDetails extends AppCompatActivity {
     private Button bookCarButton;
     private ImageView calendarimage;
     EditText rentPriceTextView;
+    String rentCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +115,7 @@ public class BookingDetails extends AppCompatActivity {
         String email = emailEditText.getText().toString().trim();
         String startDate = rentalperiod.getText().toString().split(" - ")[0];  // Assuming date format is "start - end"
         String endDate = rentalperiod.getText().toString().split(" - ")[1];
-        String rentCost = rentCostEditText.getText().toString().trim();
+         rentCost = rentCostEditText.getText().toString().trim();
 
         if (fieldsAreValid(userName, phone, email, startDate, endDate, rentCost, VIN_number)) {
             sendBookingToServer(VIN_number, rentCost, userName, email, phone, startDate, endDate);
@@ -174,9 +175,23 @@ public class BookingDetails extends AppCompatActivity {
         builder.setTitleText("Select a date range").setTheme(R.style.DatePickerDialogTheme);
         MaterialDatePicker<Pair<Long, Long>> datePicker = builder.build();
         datePicker.addOnPositiveButtonClickListener(selection -> {
+            // Format and display the selected date range
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
             rentalperiod.setText(sdf.format(new Date(selection.first)) + " - " + sdf.format(new Date(selection.second)));
+
+            // Calculate the number of days between the selected dates
+            long startDate = selection.first;
+            long endDate = selection.second;
+            long diffInMillies = endDate - startDate;
+            long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+        double rentPrice=Double.parseDouble(String.valueOf(rentPriceTextView.getText()));
+            // Calculate the total rental price
+            double totalRentalPrice = diffInDays * rentPrice;
+
+            // Set the calculated rental price in the EditText
+            rentPriceTextView.setText(String.valueOf(totalRentalPrice));
         });
         datePicker.show(getSupportFragmentManager(), "DATE_PICKER");
     }
+
 }
