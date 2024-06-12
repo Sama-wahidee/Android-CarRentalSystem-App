@@ -3,6 +3,7 @@ package edu.birzeit.www;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,11 +30,21 @@ public class signup extends AppCompatActivity {
     private EditText editTextPhone;
     private EditText editTextAddress;
     private Button signupButton;
+    private SharedPreferences sharedPreferences;
+
+    private static final String PREFS_NAME = "SignupPrefs";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_CONFIRM_PASSWORD = "confirmPassword";
+    private static final String KEY_PHONE = "phone";
+    private static final String KEY_ADDRESS = "address";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
         findViewById(R.id.libt).setOnClickListener(v -> {
             Intent intent = new Intent(this, login.class);
             startActivity(intent);
@@ -48,6 +59,18 @@ public class signup extends AppCompatActivity {
         editTextAddress = findViewById(R.id.editTextAddress);
         signupButton = findViewById(R.id.signup);
 
+        sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        // Restore the saved state
+        if (sharedPreferences.contains(KEY_USERNAME)) {
+            editTextUsername.setText(sharedPreferences.getString(KEY_USERNAME, ""));
+            editTextEmail.setText(sharedPreferences.getString(KEY_EMAIL, ""));
+            editTextPassword.setText(sharedPreferences.getString(KEY_PASSWORD, ""));
+            editTextConfirmPassword.setText(sharedPreferences.getString(KEY_CONFIRM_PASSWORD, ""));
+            editTextPhone.setText(sharedPreferences.getString(KEY_PHONE, ""));
+            editTextAddress.setText(sharedPreferences.getString(KEY_ADDRESS, ""));
+        }
+
         // Set click listener on the signup button
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +78,34 @@ public class signup extends AppCompatActivity {
                 createUser();
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // Save the current state of the EditTexts
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(KEY_USERNAME, editTextUsername.getText().toString());
+        editor.putString(KEY_EMAIL, editTextEmail.getText().toString());
+        editor.putString(KEY_PASSWORD, editTextPassword.getText().toString());
+        editor.putString(KEY_CONFIRM_PASSWORD, editTextConfirmPassword.getText().toString());
+        editor.putString(KEY_PHONE, editTextPhone.getText().toString());
+        editor.putString(KEY_ADDRESS, editTextAddress.getText().toString());
+        editor.apply();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Restore the state of the EditTexts
+        editTextUsername.setText(sharedPreferences.getString(KEY_USERNAME, ""));
+        editTextEmail.setText(sharedPreferences.getString(KEY_EMAIL, ""));
+        editTextPassword.setText(sharedPreferences.getString(KEY_PASSWORD, ""));
+        editTextConfirmPassword.setText(sharedPreferences.getString(KEY_CONFIRM_PASSWORD, ""));
+        editTextPhone.setText(sharedPreferences.getString(KEY_PHONE, ""));
+        editTextAddress.setText(sharedPreferences.getString(KEY_ADDRESS, ""));
     }
 
     private void createUser() {

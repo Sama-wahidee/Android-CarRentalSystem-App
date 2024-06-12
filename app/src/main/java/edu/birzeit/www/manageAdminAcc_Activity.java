@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -40,6 +41,8 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
     EditText emailEditText;
     EditText phoneEditText;
     EditText addressEditText, password_edit_text;
+    TextView textViewUsername, textViewEmail;
+
     Button saveButton;
     private ImageView usernameEditIcon, passwordEditIcon, emailEditIcon, phoneEditIcon, addressEditIcon;
     private DrawerLayout drawerLayout;
@@ -111,6 +114,11 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
                 if (itemId == R.id.home) {
                     Toast.makeText(manageAdminAcc_Activity.this, "Home Page", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(manageAdminAcc_Activity.this, MainActivity2.class);
+                    startActivity(intent);
+                }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(manageAdminAcc_Activity.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(manageAdminAcc_Activity.this, AboutUs.class);
                     startActivity(intent);
                 }
                 drawerLayout.close();
@@ -231,6 +239,49 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
         });
 
         queue.add(jsonArrayRequest);
+        //--------------------------** SHAHD EDIT **-----------------------------
+// to show name & email on tool bar..
+        textViewUsername = findViewById(R.id.textViewUsername);
+        textViewEmail = findViewById(R.id.textViewEmail);
+
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        View headerView = navigationView.getHeaderView(0);  // This gets the header view from the NavigationView
+
+        TextView textViewUsername = headerView.findViewById(R.id.textViewUsername);
+        TextView textViewEmail = headerView.findViewById(R.id.textViewEmail);
+
+// Access SharedPreferences
+        SharedPreferences userPrefs = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        String userEmail = userPrefs.getString("email", "example@example.com");  // Use default value if not found
+
+        textViewEmail.setText(userEmail);
+
+// Make HTTP request to fetch user data
+        String userUrl = "http://10.0.2.2:80/project_android/get_users.php?email=" + userEmail;
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest userRequest = new JsonArrayRequest(Request.Method.GET, userUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    if (response.length() > 0) {
+                        JSONObject userObject = response.getJSONObject(0); // there's only one user returned
+                        String userName = userObject.getString("UserName");
+
+                        // Autofill EditTexts
+                        textViewUsername.setText(userName);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, error -> {
+            // Handle error
+            Toast.makeText(manageAdminAcc_Activity.this, "Failed to Fetch", Toast.LENGTH_SHORT).show();
+        });
+        requestQueue.add(userRequest);
+//--------------------------** SHAHD EDIT **-----------------------------
+
     }
 
     private void setupEditIcon(ImageView editIcon, EditText editText) {
@@ -260,6 +311,10 @@ public class manageAdminAcc_Activity extends AppCompatActivity {
 
         MenuItem reverItem = menu.findItem(R.id.reservations);
         reportItem.setVisible(login.isAdmin);
+        MenuItem reservItem = menu.findItem(R.id.reservations);
+        reservItem.setVisible(!(login.isAdmin));
+        MenuItem contactItem = menu.findItem(R.id.ContactUsOption);
+        contactItem.setVisible(!(login.isAdmin));
         return true;
     }
 }

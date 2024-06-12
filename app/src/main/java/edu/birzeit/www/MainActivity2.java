@@ -177,6 +177,11 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
                     Intent intent = new Intent(MainActivity2.this, MainActivity2.class);
                     startActivity(intent);
                 }
+                if (itemId == R.id.navaboutUs) {
+                    Toast.makeText(MainActivity2.this, "Home Page", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity2.this, AboutUs.class);
+                    startActivity(intent);
+                }
                 drawerLayout.close();
                 return false;
             }
@@ -271,8 +276,6 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
         menu.clear();
 
         getMenuInflater().inflate(R.menu.drawer_items, menu);
-        MenuItem adminSettingItem = menu.findItem(R.id.AdminSettingOption);
-        adminSettingItem.setVisible(login.isAdmin); // Hide/show admin setting menu item based on isAdmin value
 
         MenuItem addCarItem = menu.findItem(R.id.addCarOption);
         addCarItem.setVisible(login.isAdmin); // Hide/show add car menu item based on isAdmin value
@@ -283,9 +286,12 @@ public class MainActivity2 extends AppCompatActivity implements recyclerinterfac
         MenuItem reportItem = menu.findItem(R.id.reportOption);
         reportItem.setVisible(login.isAdmin); // Hide/show report menu item based on isAdmin value
 
+        MenuItem reservItem = menu.findItem(R.id.reservations);
+        reservItem.setVisible(!(login.isAdmin));
+        MenuItem contactItem = menu.findItem(R.id.ContactUsOption);
+        contactItem.setVisible(!(login.isAdmin));
         return true;
     }
-
 
     public void updateCarList(List<Car> filteredCars) {
         cars.clear();

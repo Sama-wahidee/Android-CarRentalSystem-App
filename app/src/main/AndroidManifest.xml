@@ -17,7 +17,9 @@
         android:theme="@style/Theme.Project"
         tools:ignore="ExtraText"
         tools:targetApi="31">
-
+        <activity
+            android:name=".AboutUs"
+            android:exported="false" />
         <activity
             android:name=".signup"
             android:exported="false" />
@@ -37,7 +39,6 @@
         <activity
             android:name=".AdminOrders"
             android:exported="false" />
-
         <activity
             android:name=".userActivty"
             android:exported="false" />
@@ -89,7 +90,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ContacUsActivity"
             android:exported="true">
@@ -99,6 +99,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

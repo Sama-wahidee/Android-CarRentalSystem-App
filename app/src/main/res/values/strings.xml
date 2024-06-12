@@ -50,7 +50,7 @@
 
     <string name="open">Open</string>
     <string name="close">Close</string>
-]    <!--    _____________________ **SHAHD** ________________________________-->
+    ]    <!--    _____________________ **SHAHD** ________________________________-->
 
     <string-array name="transmission_array">
         <item>Automatic</item>
