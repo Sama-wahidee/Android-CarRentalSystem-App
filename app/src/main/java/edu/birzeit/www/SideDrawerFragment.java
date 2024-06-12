@@ -470,7 +470,17 @@ public class SideDrawerFragment extends DialogFragment {
                     layoutBrandChoices.findViewById(R.id.checkbox_brand7),
                     layoutBrandChoices.findViewById(R.id.checkbox_brand8),
                     layoutBrandChoices.findViewById(R.id.checkbox_brand9),
-                    layoutBrandChoices.findViewById(R.id.checkbox_brand10)
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand10),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand11),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand12),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand13),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand14),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand15),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand16),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand17),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand18),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand19),
+                    layoutBrandChoices.findViewById(R.id.checkbox_brand20)
             };
             for (CheckBox checkBox : brandCheckBoxes) {
                 checkBox.setChecked(false);

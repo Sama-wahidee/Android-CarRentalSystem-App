@@ -144,7 +144,109 @@
                     android:drawableLeft="@drawable/volkswagen"
                     android:layout_marginLeft="20dp"
                     android:textColor="@color/darkgray"/>
+
+                <!-- Additional Popular Car Brands -->
+                <CheckBox
+                    android:id="@+id/checkbox_brand11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lexus"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/lexus"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Subaru"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/subaru"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mazda"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/mazda"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kia"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/kia"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jeep"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/jeep"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tesla"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/tesla"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Porsche"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/porsche"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jaguar"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/jaguar"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand19"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ferrari"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/ferrari"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
+
+                <CheckBox
+                    android:id="@+id/checkbox_brand20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lamborghini"
+                    android:fontFamily="@font/font1"
+                    android:drawableLeft="@drawable/lamborghini"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/darkgray"/>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

@@ -1,7 +1,9 @@
 package edu.birzeit.www;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,10 +37,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -69,6 +73,8 @@ public class AddCarActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ImageButton imageButton;
     private Menu menu;
+    TextView textViewUsername, textViewEmail;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +93,52 @@ public class AddCarActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+        //--------------------------** SHAHD EDIT **-----------------------------
+        // to show name & email on tool bar..
+        textViewUsername = findViewById(R.id.textViewUsername);
+        textViewEmail = findViewById(R.id.textViewEmail);
+
+
+//
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        View headerView = navigationView.getHeaderView(0);  // This gets the header view from the NavigationView
+
+        TextView textViewUsername = headerView.findViewById(R.id.textViewUsername);
+        TextView textViewEmail = headerView.findViewById(R.id.textViewEmail);
+
+        // Access SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString("email", "example@example.com");  // Use default value if not found
+
+        textViewEmail.setText(savedEmail);
+
+
+        // Make HTTP request to fetch user data
+        String getUserUrl = "http://10.0.2.2:80/project_android/get_users.php?email=" + savedEmail;
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, getUserUrl, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                try {
+                    if (response.length() > 0) {
+                        JSONObject user = response.getJSONObject(0); //  there's only one user returned
+                        String fetchedUsername = user.getString("UserName");
+
+                        // Autofill EditTexts
+                        textViewUsername.setText(fetchedUsername);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }, error -> {
+            // Handle error
+            Toast.makeText(AddCarActivity.this, "Failed to Fetch", Toast.LENGTH_SHORT).show();
+        });
+        queue.add(jsonArrayRequest);
+//--------------------------** SHAHD EDIT **-----------------------------
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -540,8 +592,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
     MenuItem reportItem = menu.findItem(R.id.reportOption);
     reportItem.setVisible(login.isAdmin); // Hide/show report menu item based on isAdmin value
 
-    MenuItem reverItem = menu.findItem(R.id.reservations);
-    reportItem.setVisible(login.isAdmin);
+    MenuItem reservItem = menu.findItem(R.id.reservations);
+    reservItem.setVisible(!(login.isAdmin));
+    MenuItem contactItem = menu.findItem(R.id.ContactUsOption);
+    contactItem.setVisible(!(login.isAdmin));
     return true;
 }
 }
