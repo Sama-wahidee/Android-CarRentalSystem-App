@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:car_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:car_view="http://schemas.android.com/tools"
-    android:padding="16dp"
-    android:background="@drawable/main">
+
+    android:background="@color/darkgray"
+    android:padding="16dp">
+
     <include layout="@layout/header" />
 
     <ImageView
         android:id="@+id/carimg"
-        android:layout_width="388dp"
-        android:layout_height="298dp"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="180dp"
         android:layout_marginEnd="25dp"
-        />
+        android:layout_marginBottom="10dp" />
 
     <TextView
         android:id="@+id/modeltxt"
+        style="@style/AddStyle"
         android:layout_width="156dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/carimg"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="22dp"
-        android:fontFamily="sans-serif"
-
         android:textColor="#FFFF"
         android:textSize="20sp"
         android:textStyle="bold" />
@@ -37,62 +37,67 @@
     <!-- New TextView for Car Description -->
     <TextView
         android:id="@+id/car_description"
+        style="@style/AddStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/modeltxt"
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="13dp"
-        android:fontFamily="sans-serif"
         android:text="The BMW M4: A high-performance coupe engineered for exhilarating driving experiences."
         android:textColor="#FFFF"
         android:textSize="16sp" />
 
     <TextView
         android:id="@+id/pricetxt"
+        style="@style/AddStyle"
         android:layout_width="wrap_content"
-        android:layout_height="66dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/overviewtxt"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="-8dp"
-        android:fontFamily="sans-serif"
-
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="155dp"
+        android:layout_marginBottom="20dp"
+        android:text="price"
         android:textColor="#FFFF"
         android:textSize="20sp"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/bookbtn"
-        android:layout_width="150dp"
+        android:layout_width="157dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="245dp"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="#5BD3C7"
-        android:shadowColor="#D11414"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="121dp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center_horizontal"
         android:text="Book Now"
-        android:textColor="#000000"
-        android:textColorHighlight="#9A1111"
-        android:textColorHint="#B61E1E"
-        android:textColorLink="#FFEA00"
-        app:rippleColor="#9C2F2F"
-        app:strokeColor="#D82424" />
+        android:textColor="@color/darkgray"
+        android:textStyle="italic"
+        android:background="@drawable/custom_button"
+        style="@style/AddStyle"
+
+        />
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/AddStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="157dp"
+        android:layout_marginBottom="20dp"
         android:text="Car Details "
         android:textColor="#FFFF" />
 
     <TextView
         android:id="@+id/overviewtxt"
+        style="@style/AddStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/car_description"
@@ -105,12 +110,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerInfo"
-        android:layout_width="383dp"
-        android:layout_height="149dp"
+        style="@style/AddStyle"
+        android:layout_width="365dp"
+        android:layout_height="77dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="532dp"
-        android:layout_marginBottom="34dp" />
+        android:layout_marginTop="500dp"
+        android:layout_marginBottom="76dp" />
 
     <ImageView
         android:id="@+id/backbtn"
@@ -123,15 +129,15 @@
         android:onClick="backbtn"
         app:srcCompat="@drawable/back3" />
 
-    <TextView
-        android:id="@+id/testtxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="150dp"
-        android:layout_marginBottom="330dp"
-        android:text="TextView" />
+    <!--    <TextView-->
+    <!--        android:id="@+id/testtxt"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_marginEnd="150dp"-->
+    <!--        android:layout_marginBottom="330dp"-->
+    <!--        android:text="TextView" />-->
 
 
 </RelativeLayout>

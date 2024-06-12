@@ -1,75 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:gravity="center_horizontal"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
 
     <!-- Main content activity -->
-    <include layout="@layout/activity_main_content"
+    <include
+        layout="@layout/activity_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/searchlayout" />
+
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/searchlayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:theme="@style/Theme.AppCompat.Dialog"
-        android:id="@+id/searchlayout"
         tools:context=".search">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="15dp">
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"/>
+                android:layout_height="150dp" />
 
             <TextView
                 android:id="@+id/Brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Search By Model \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/font1"
-                android:textColor="@color/darkgray"/>
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="\t\t\t\t\t\t\t\tSearch By Model \t\t\t\t\t\t\t\t\t\t"
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
             <EditText
                 android:id="@+id/searchh"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:paddingStart="5dp"
                 android:background="@drawable/textedit"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="    "
                 android:fontFamily="@font/font1"
-                android:textColor="@color/darkgray"/>
-
+                android:textColor="@color/darkgray"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/green" />
+
             <Button
                 android:id="@+id/searchb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:textStyle="bold"
-                android:textSize="25dp"
-                android:textColor="@color/darkgray"
-                android:fontFamily="@font/font2"
                 android:background="@drawable/custom_button"
-                android:text="Search" />
+                android:text="Search"
+                style="@style/AddStyle"
+                android:textColor="@color/darkgray"
+                android:textStyle="italic"
+
+                />
         </LinearLayout>
 
     </ScrollView>
-    <include layout="@layout/search_header"
+
+    <include
+        layout="@layout/search_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true" />

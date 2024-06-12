@@ -240,7 +240,7 @@ public class adminActivity extends AppCompatActivity {
 
         Glide.with(this).load(imageUrl).into(carImage);
         carName.setText(model);
-        carDescription.setText("Description: " + description);
+        carDescription.setText( description);
 
         initializeCardList(recyclerView);
 
@@ -265,13 +265,13 @@ public class adminActivity extends AppCompatActivity {
     public void updatebtn(View view) {
 
         LinearLayout buttonLayout = findViewById(R.id.buttonLayout);
-        LinearLayout photolayout = findViewById(R.id.photolayout);
+//        LinearLayout photolayout = findViewById(R.id.photolayout);
         modelTxt.setFocusable(true);
         modelTxt.setFocusableInTouchMode(true);
         desText.setFocusable(true);
         desText.setFocusableInTouchMode(true);
         buttonLayout.setVisibility(View.VISIBLE);
-        photolayout.setVisibility(View.VISIBLE);
+//        photolayout.setVisibility(View.VISIBLE);
         if (adapter != null) {
             adapter.setClickable(true);
             adapter.notifyDataSetChanged();

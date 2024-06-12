@@ -3,8 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darkgray">#24282f</color>
-    <color name="green">#1effaa</color>
+<!--    <color name="green">#1effaa</color>-->
     <color name="gray">#282d34</color>
+    <color name="green">#ace6c9</color>
 
     <!--    _____________________ **SHAHD** ________________________________-->
     <color name="lightestGreen">#ace6c9</color>

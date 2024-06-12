@@ -68,7 +68,7 @@ public class userActivty extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerlayout);
         navigationView = findViewById(R.id.navigationView);
         imageButton = findViewById(R.id.buttonDrawer);
-        TextView tst=findViewById(R.id.testtxt);
+//        TextView tst=findViewById(R.id.testtxt);
         RecyclerView recyclerView=findViewById(R.id.recyclerInfo);
 
         model = getIntent().getStringExtra("model");
@@ -221,7 +221,7 @@ public class userActivty extends AppCompatActivity {
         // carSpeed.setText("Top Speed: " + topSpeed + " km/h");
         carPrice.setText("Price per day: $" + rentPrice);
         // carModel.setText("Model: " + model);
-        carDescription.setText("Description: " + description);
+        carDescription.setText(description);
         initializeCardList(recyclerView);
         bookBtn.setOnClickListener(new View.OnClickListener() {
             @Override

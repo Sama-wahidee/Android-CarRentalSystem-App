@@ -26,10 +26,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:gravity="center"
-            android:textColor="@android:color/black"
+            style="@style/AddStyle"
+            android:textColor="@color/gray"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-medium" />
+            />
 
         <TextView
             android:id="@+id/valueTextView"
@@ -37,9 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:gravity="center"
-            android:textColor="@android:color/black"
+            style="@style/AddStyle"
+            android:textColor="@color/gray"
             android:textSize="14sp"
-            android:fontFamily="sans-serif" />
+            />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

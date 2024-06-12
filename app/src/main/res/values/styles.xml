@@ -29,6 +29,18 @@
         <item name="android:textSize">22dp</item>
         <item name="android:fontFamily">@font/font1</item>
     </style>
+
+    <style name="AddStyleAdmin">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:fontFamily">@font/font1</item>
+    </style>
+
+    <style name="AddStyleOrders">
+        <item name="android:textColor">@color/darkgray</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:fontFamily">@font/font1</item>
+    </style>
     <!-- =====================AddStyle2 Used In AddCarActivity=================== -->
     <style name="AddStyle2">
         <item name="android:textColor">@color/gray</item>

@@ -14,7 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Objects;
 
-public class Filter extends AppCompatActivity {
+public class
+Filter extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

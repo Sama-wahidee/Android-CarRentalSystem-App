@@ -4,40 +4,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:car_view="http://schemas.android.com/tools"
-    android:padding="16dp"
-    android:background="@drawable/main">
+    android:background="@color/darkgray"
+    android:padding="16dp">
     <include layout="@layout/header" />
 
     <ImageView
         android:id="@+id/carimg"
-        android:layout_width="388dp"
-        android:layout_height="298dp"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="85dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="185dp"
         android:layout_marginEnd="25dp"
-        />
+        android:layout_marginBottom="10dp" />
+
+
+    <!-- New TextView for Car Description -->
 
     <EditText
         android:id="@+id/modeltxt"
+        style="@style/AddStyle"
         android:layout_width="156dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/carimg"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif"
-
-        android:textColor="#FFFF"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="14dp"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        />
+        android:textColor="#FFFF"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
-    <!-- New TextView for Car Description -->
     <EditText
         android:id="@+id/car_description"
         android:layout_width="wrap_content"
@@ -46,7 +46,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif"
+        style="@style/AddStyle"
         android:text="The BMW M4: A high-performance coupe engineered for exhilarating driving experiences."
         android:textColor="#FFFF"
         android:textSize="16sp"
@@ -56,6 +56,7 @@
 
     <TextView
         android:id="@+id/textView2"
+        style="@style/AddStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -67,24 +68,26 @@
 
     <TextView
         android:id="@+id/overviewtxt"
+        style="@style/AddStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/car_description"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
         android:text="Overview"
         android:textColor="#FFFF"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDetails"
-        android:layout_width="383dp"
-        android:layout_height="137dp"
+        style="@style/AddStyle"
+        android:layout_width="395dp"
+        android:layout_height="71dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="520dp"
-        android:layout_marginBottom="58dp" />
+        android:layout_marginTop="560dp"
+        android:layout_marginBottom="7dp" />
 
     <ImageView
         android:id="@+id/backbtn"
@@ -97,16 +100,41 @@
         android:onClick="backbtn"
         app:srcCompat="@drawable/back3" />
 
+<!--    ************************************************************
+-->
+
+
+<!--    ***************************************************  -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="133dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="710dp"
+            android:text="Navigation:"
+            android:textColor="#FFFF"
+            style="@style/AddStyle"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     <ImageView
         android:id="@+id/btnupdate"
         android:layout_width="33dp"
         android:layout_height="33dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="700dp"
-        android:layout_marginEnd="197dp"
+        android:layout_marginTop="710dp"
+        android:layout_marginEnd="50dp"
         android:onClick="updatebtn"
-        app:srcCompat="@drawable/edit" />
+        app:srcCompat="@drawable/pen" />
 
     <ImageView
         android:id="@+id/btndelete"
@@ -114,82 +142,57 @@
         android:layout_height="33dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="700dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginTop="710dp"
+        android:layout_marginEnd="50dp"
         app:srcCompat="@drawable/delete" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="133dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="715dp"
-        android:layout_marginEnd="255dp"
-        android:text="Navigation:"
-        android:textColor="#FFFF"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:id="@+id/photolayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="300dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="290dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/textView"
-            style="@style/AddStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="44dp"
-            android:gravity="center_vertical"
-            android:text="Update Car Photo:  " />
 
         <ImageView
             android:id="@+id/selectImageButton"
-            android:layout_width="34dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="0dp"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="710dp"
+            android:layout_marginEnd="50dp"
             android:onClick="openFileChooser"
             android:src="@drawable/camera" />
 
+
     </LinearLayout>
+
+
+
     <LinearLayout
         android:id="@+id/buttonLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="406dp"
+        android:layout_height="66dp"
         android:layout_below="@id/btnupdate"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        >
+        android:layout_marginTop="750dp"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/savebtn"
+            style="@style/AddStyleAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save Changes"
             android:layout_marginEnd="10dp"
+            android:background="@drawable/custom_button"
             android:onClick="setConfirmUpdateButton"
-            />
+            android:text=" \t Save Changes \t "
+            android:textColor="@color/darkgray"
+            android:textStyle="italic" />
 
         <Button
             android:id="@+id/discardbtn"
+            style="@style/AddStyleAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Discard Changes"
-            android:onClick="discardbtn"/>
+            android:background="@drawable/custom_button"
+            android:onClick="discardbtn"
+            android:text=" \t Discard Changes \t\t"
+            android:textColor="@color/darkgray"
+            android:textStyle="italic" />
+
 
     </LinearLayout>
 
