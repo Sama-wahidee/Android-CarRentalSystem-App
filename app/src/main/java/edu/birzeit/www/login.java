@@ -30,7 +30,7 @@ import java.util.List;
 
 public class login extends AppCompatActivity {
     private static final String GET_USERS_URL = "http://10.0.2.2:80/project_android/getAllusers.php";
-    private static final String getUsers_URL = "http://192.168.56.1/project_android/get_users.php";
+//    private static final String getUsers_URL = "http://192.168.56.1/project_android/get_users.php";
     public static List<User> users = new ArrayList<>();
     private EditText emailEditText;
     private EditText passwordEditText;
