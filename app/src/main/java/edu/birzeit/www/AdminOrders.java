@@ -64,7 +64,6 @@ public class AdminOrders extends AppCompatActivity {
     String email;
     String vin;
 
-    //"http://10.0.2.2:80/order_get.php?email=khaled@gmail.com&vin_number=123456789";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
