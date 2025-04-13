@@ -272,12 +272,14 @@
 
         <Button
             android:id="@+id/save_button"
-            style="@style/ChooserBtnShape"
-            android:layout_width="170dp"
+            style="@style/AddStyle"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/darkgray"
+            android:textStyle="italic"
+            android:layout_width="195dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:background="@drawable/custom_button"
             android:clickable="true"
             android:focusable="true"
             android:text="  Save Changes  " />

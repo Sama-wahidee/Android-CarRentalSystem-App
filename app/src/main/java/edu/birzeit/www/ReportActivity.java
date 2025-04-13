@@ -37,7 +37,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
 public class ReportActivity extends AppCompatActivity {
-    private TextView totalCarsTxt, repairCarTxt, rentedCarsTxt, availableCarsTxt,customerTxt;
+    private TextView totalCarsTxt, repairCarTxt, rentedCarsTxt, availableCarsTxt,customerTxt, revenueTxt;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ImageButton imageButton;
@@ -172,6 +172,7 @@ public class ReportActivity extends AppCompatActivity {
         availableCarsTxt = findViewById(R.id.AvilabileCarsTxt);
         customerTxt = findViewById(R.id.customerTxt);
         repairCarTxt = findViewById(R.id.repairCarTxt);
+        revenueTxt = findViewById(R.id.revenueTxt);
 
         fetchData();
     }
@@ -186,12 +187,15 @@ public class ReportActivity extends AppCompatActivity {
                         int availableCars = response.getInt("availableCars");
                         int gmailUsers = response.getInt("gmailUsers");
                         int repairCars = response.getInt("under_maintenance");
+                        double totalRevenue = response.getDouble("totalRevenue"); // Fetch the revenue
 
                         totalCarsTxt.setText(String.valueOf(totalCars));
                         rentedCarsTxt.setText(String.valueOf(rentedCars));
                         availableCarsTxt.setText(String.valueOf(availableCars));
                         customerTxt.setText(String.valueOf(gmailUsers));
                         repairCarTxt.setText(String.valueOf(repairCars));
+                        revenueTxt.setText(String.valueOf(totalRevenue)); // Set the revenue
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -223,6 +227,5 @@ public class ReportActivity extends AppCompatActivity {
         MenuItem contactItem = menu.findItem(R.id.ContactUsOption);
         contactItem.setVisible(!(login.isAdmin));
         return true;
-    }
 }
-
+}

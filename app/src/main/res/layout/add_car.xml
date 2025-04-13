@@ -44,16 +44,15 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/add_box"
                 android:clickable="true"
-                android:focusable="true"
-                android:padding="12dp"
-
                 android:drawableRight="@drawable/down"
                 android:drawablePadding="8dp"
+
+                android:focusable="true"
+                android:padding="12dp"
                 android:text="Car Information "
                 android:textColor="@color/gray"
                 android:textSize="18dp"
                 android:textStyle="bold" />
-
 
 
             <!-- Begin LinearLayout: Collapsible content for Car Information -->
@@ -137,10 +136,10 @@
                         android:id="@+id/vinEditText"
                         style="@style/HintStyle"
                         android:layout_width="0dp"
-                        android:inputType="number"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="@string/vin_hint" />
+                        android:hint="@string/vin_hint"
+                        android:inputType="number" />
                 </LinearLayout>
                 <!-- End LinearLayout: Container for VIN input -->
 
@@ -157,12 +156,12 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/add_box"
                 android:clickable="true"
+                android:drawableRight="@drawable/down"
                 android:focusable="true"
                 android:padding="12dp"
                 android:text="Rental Information"
                 android:textColor="@color/gray"
                 android:textSize="18dp"
-                android:drawableRight="@drawable/down"
 
                 android:textStyle="bold" />
 
@@ -308,12 +307,12 @@
                 android:layout_marginTop="40dp"
                 android:background="@drawable/add_box"
                 android:clickable="true"
+                android:drawableRight="@drawable/down"
                 android:focusable="true"
                 android:padding="12dp"
                 android:text="Specifications Information"
                 android:textColor="@color/gray"
                 android:textSize="18dp"
-                android:drawableRight="@drawable/down"
 
                 android:textStyle="bold" />
 
@@ -326,7 +325,6 @@
                 android:orientation="vertical"
                 android:padding="8dp"
                 android:visibility="gone">
-
 
 
                 <!-- Fuel Type -->
@@ -483,9 +481,9 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:paddingLeft="7dp"
                     android:layout_marginTop="0dp"
                     android:onClick="openFileChooser"
+                    android:paddingLeft="7dp"
                     android:src="@drawable/camera" />
 
             </LinearLayout>
@@ -507,14 +505,17 @@
 
             <Button
                 android:id="@+id/AddCarBtn"
-                style="@style/BtnsStyle"
-                android:background="@drawable/custom_button"
                 android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:clickable="true"
-                android:text="      Add Car     " />
+                android:text="      Add Car     "
+                style="@style/AddStyle"
+                android:background="@drawable/custom_button"
+                android:textColor="@color/darkgray"
+                android:textStyle="italic"
+                />
             <!--                android:onClick="openUserManage"-->
 
             <!-- End LinearLayout: Collapsible content for Specifications Information -->
